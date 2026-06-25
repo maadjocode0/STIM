@@ -1,0 +1,26 @@
+# Déploiement Netlify — site statique STIM (aucun build nécessaire)
+[build]
+  publish = "."
+  command = ""
+
+# Le formulaire utilise Web3Forms (côté client) : aucun backend requis.
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Netlify sert automatiquement /404.html pour les pages introuvables.

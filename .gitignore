@@ -1,0 +1,13 @@
+# dépendances de build (image/page tooling)
+tools/node_modules/
+
+# outils Claude / éditeur
+.claude/
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# temp
+_logo_extract/
