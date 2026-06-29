@@ -66,9 +66,8 @@ function header(active) {
   return `<header class="site-header">
   <div class="container nav">
     <a class="brand" href="/" aria-label="STIM — Accueil">
-      <span class="brand__logo"><img src="/assets/logo/stim-logo.webp" alt="Logo STIM" width="56" height="25"></span>
-      <span class="brand__txt"><span class="brand__name">STIM</span><span class="brand__tag">Construction métallique</span></span>
-    </a>
+      <span class="brand__logo"><img src="/assets/logo/stim-logo.webp" alt="STIM — Construction métallique" width="86" height="38"></span>
+          </a>
     <nav class="nav__links" aria-label="Navigation principale">
       ${links}
     </nav>
@@ -93,7 +92,7 @@ function footer() {
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <a class="brand" href="/" aria-label="STIM — Accueil"><span class="brand__logo"><img src="/assets/logo/stim-logo.webp" alt="Logo STIM" width="56" height="25"></span><span class="brand__txt"><span class="brand__name">STIM</span><span class="brand__tag">Construction métallique</span></span></a>
+        <a class="brand" href="/" aria-label="STIM — Accueil"><span class="brand__logo"><img src="/assets/logo/stim-logo.webp" alt="STIM — Construction métallique" width="86" height="38"></span></a>
         <p>Société Tunisienne d'Industrie Métallique — conception, fabrication et montage de charpentes et structures métalliques depuis 2008.</p>
         <div class="footer__social" aria-label="Réseaux sociaux">
           <a href="#" aria-label="Facebook de STIM" rel="noopener" title="Facebook [À VÉRIFIER]"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.5-1.5H17V.3C16.7.2 15.8 0 14.8 0 12.5 0 11 1.4 11 4v2H8v3h3v9h3z"/></svg></a>
@@ -118,7 +117,7 @@ function footer() {
   <a class="c-tel" href="tel:+21655326160">${ICON_PHONE} Appeler</a>
   <a class="c-wa" href="${WA}" rel="noopener">${ICON_WA} WhatsApp</a>
 </nav>
-<script src="/assets/js/main.js?v=3" defer></script>`;
+<script src="/assets/js/main.js?v=4" defer></script>`;
 }
 
 function orgLD() {
@@ -192,7 +191,7 @@ function doc({ title, desc, urlPath, active, body, extraLD = "" }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css?v=3">
+<link rel="stylesheet" href="/assets/css/styles.css?v=4">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 ${orgLD()}
 ${extraLD}

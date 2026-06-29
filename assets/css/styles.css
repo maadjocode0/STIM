@@ -145,12 +145,10 @@ strong{color:#fff;font-weight:700}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem;transition:padding .3s var(--ease)}
 .site-header.scrolled .nav{padding-block:.55rem}
 .brand{display:flex;align-items:center;gap:.7rem;flex:none}
-.brand__logo{background:#fff;border-radius:9px;padding:.42rem .6rem;display:flex;box-shadow:var(--shadow-soft);transition:transform .2s var(--ease)}
+.brand__logo{display:flex;transition:transform .2s var(--ease)}
 .brand:hover .brand__logo{transform:translateY(-1px)}
-.brand__logo img{height:30px;width:auto}
-.brand__txt{display:flex;flex-direction:column;line-height:1}
-.brand__name{font-family:var(--ff-display);font-weight:800;letter-spacing:.05em;font-size:1.18rem}
-.brand__tag{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.13em;color:var(--steel-dim);text-transform:uppercase;margin-top:3px}
+/* logo PNG is dark/transparent → render it white so it reads on the dark header/footer */
+.brand__logo img{height:38px;width:auto;filter:brightness(0) invert(1)}
 .nav__links{display:none;align-items:center;gap:.15rem}
 .nav__links a{position:relative;padding:.55rem .85rem;border-radius:9px;color:var(--txt-dim);font-weight:500;font-size:.95rem;transition:color .15s,background .15s}
 .nav__links a:hover{color:#fff;background:rgba(255,255,255,.06)}
