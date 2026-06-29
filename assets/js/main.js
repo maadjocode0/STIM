@@ -86,37 +86,28 @@
   checkReveals();
   requestAnimationFrame(checkReveals);
 
-  /* ---- Clients logo carousel ---- */
+  /* ---- Clients logo carousel (plusieurs logos visibles, défile un par un) ---- */
   document.querySelectorAll(".logo-carousel").forEach(function (root) {
     var track = root.querySelector(".lc-track");
     var slides = root.querySelectorAll(".lc-slide");
-    var dotsWrap = root.querySelector(".lc-dots");
     var prev = root.querySelector(".lc-prev");
     var next = root.querySelector(".lc-next");
+    var vp = root.querySelector(".lc-viewport");
     var n = slides.length;
-    if (!track || n < 2) return;
+    if (!track || !vp || n < 2) return;
     var idx = 0, timer = null;
     var interval = parseInt(root.getAttribute("data-interval"), 10) || 4000;
-    var dots = [];
-    for (var i = 0; i < n; i++) {
-      (function (i) {
-        var d = document.createElement("button");
-        d.type = "button";
-        d.className = "lc-dot";
-        d.setAttribute("aria-label", "Aller à la référence " + (i + 1));
-        d.addEventListener("click", function () { go(i); restart(); });
-        dotsWrap.appendChild(d);
-        dots.push(d);
-      })(i);
+    function stepPx() {
+      var a = slides[0].getBoundingClientRect(), b = slides[1].getBoundingClientRect();
+      return Math.abs(b.left - a.left) || a.width;
     }
-    function go(i) {
-      idx = (i + n) % n;
-      track.style.transform = "translateX(" + (-idx * 100) + "%)";
-      for (var k = 0; k < n; k++) {
-        dots[k].setAttribute("aria-current", k === idx ? "true" : "false");
-        slides[k].setAttribute("aria-hidden", k === idx ? "false" : "true");
-      }
+    function perView() {
+      var s = stepPx();
+      return s > 0 ? Math.max(1, Math.round(vp.getBoundingClientRect().width / s)) : 1;
     }
+    function maxIdx() { return Math.max(0, n - perView()); }
+    function render() { track.style.transform = "translateX(" + (-idx * stepPx()) + "px)"; }
+    function go(i) { var m = maxIdx(); idx = i < 0 ? m : (i > m ? 0 : i); render(); }
     function start() { if (prefersReduced) return; stop(); timer = setInterval(function () { go(idx + 1); }, interval); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function restart() { stop(); start(); }
@@ -127,16 +118,19 @@
     root.addEventListener("focusin", stop);
     root.addEventListener("focusout", start);
     document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
-    var sx = null, vp = root.querySelector(".lc-viewport");
-    if (vp) {
-      vp.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; stop(); }, { passive: true });
-      vp.addEventListener("touchend", function (e) {
-        if (sx === null) return;
-        var dx = e.changedTouches[0].clientX - sx;
-        if (Math.abs(dx) > 40) { go(dx < 0 ? idx + 1 : idx - 1); }
-        sx = null; start();
-      }, { passive: true });
-    }
+    var sx = null;
+    vp.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; stop(); }, { passive: true });
+    vp.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) go(dx < 0 ? idx + 1 : idx - 1);
+      sx = null; start();
+    }, { passive: true });
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { if (idx > maxIdx()) idx = maxIdx(); render(); }, 150);
+    });
     go(0);
     track.classList.add("anim");
     start();

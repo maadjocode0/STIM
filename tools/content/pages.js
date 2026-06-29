@@ -43,13 +43,10 @@ const CLIENTS = [
 ];
 const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
 const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
-const clientsBand = `<div class="logo-carousel reveal" data-interval="3500" role="group" aria-roledescription="carrousel" aria-label="Références clients de STIM">
-  <div class="lc-stage">
-    <button type="button" class="lc-arrow lc-prev" aria-label="Référence précédente">${ARROW_L}</button>
-    <div class="lc-viewport"><ul class="lc-track">${CLIENTS.map(([slug, alt, name]) => `<li class="lc-slide"><img loading="lazy" src="/assets/clients/${slug}.webp" alt="${alt}" width="180" height="90"><span class="lc-name">${name}</span></li>`).join("")}</ul></div>
-    <button type="button" class="lc-arrow lc-next" aria-label="Référence suivante">${ARROW_R}</button>
-  </div>
-  <div class="lc-dots"></div>
+const clientsBand = `<div class="logo-carousel reveal" data-interval="3000" role="group" aria-roledescription="carrousel" aria-label="Références clients de STIM">
+  <button type="button" class="lc-arrow lc-prev" aria-label="Logos précédents">${ARROW_L}</button>
+  <div class="lc-viewport"><ul class="lc-track">${CLIENTS.map(([slug, alt, name]) => `<li class="lc-slide"><div class="lc-chip"><img loading="lazy" src="/assets/clients/${slug}.webp" alt="${alt}" width="150" height="150"></div><span class="lc-name">${name}</span></li>`).join("")}</ul></div>
+  <button type="button" class="lc-arrow lc-next" aria-label="Logos suivants">${ARROW_R}</button>
 </div>`;
 
 /* ---------------- Services hub ---------------- */
@@ -183,7 +180,7 @@ exports.realisations = (ctx) => {
 <section class="section darker">
   <div class="container"><div class="gallery">${gal}</div></div>
 </section>
-<section class="section light section--tight">
+<section class="section paper2 section--tight">
   <div class="container center">
     <div class="eyebrow">Ils nous ont fait confiance</div>
     <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie &amp; l'agro-alimentaire</h2></div>
@@ -337,7 +334,7 @@ exports.about = (ctx) => {
     </div>
   </div>
 </section>
-<section class="section light section--tight">
+<section class="section paper2 section--tight">
   <div class="container center">
     <div class="eyebrow">Ils nous ont fait confiance</div>
     <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie tunisienne</h2><p style="color:var(--txt-light-dim)">Groupe Hamrouni (Sotunol, Polyflex, Polymousse, Chimicouleurs Emballages, R.C.S.), GCA / Jouda, California Gym, K. Damak Shipping, Comet, Moulin d'Or, Groupe Mzabi / Dalmas, Concorde Berges du Lac. <span title="À vérifier" style="color:var(--accent)">[À VÉRIFIER]</span></p></div>
