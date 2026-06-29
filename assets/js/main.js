@@ -87,12 +87,13 @@
   requestAnimationFrame(checkReveals);
 
   /* ---- Clients logo carousel (plusieurs logos visibles, défile un par un) ---- */
-  document.querySelectorAll(".logo-carousel").forEach(function (root) {
+  document.querySelectorAll(".logo-carousel, .photo-carousel").forEach(function (root) {
     var track = root.querySelector(".lc-track");
     var slides = root.querySelectorAll(".lc-slide");
     var prev = root.querySelector(".lc-prev");
     var next = root.querySelector(".lc-next");
     var vp = root.querySelector(".lc-viewport");
+    var counter = root.querySelector(".lc-counter");
     var n = slides.length;
     if (!track || !vp || n < 2) return;
     var idx = 0, timer = null;
@@ -107,7 +108,7 @@
     }
     function maxIdx() { return Math.max(0, n - perView()); }
     function render() { track.style.transform = "translateX(" + (-idx * stepPx()) + "px)"; }
-    function go(i) { var m = maxIdx(); idx = i < 0 ? m : (i > m ? 0 : i); render(); }
+    function go(i) { var m = maxIdx(); idx = i < 0 ? m : (i > m ? 0 : i); render(); if (counter) counter.textContent = (idx + 1) + " / " + n; }
     function start() { if (prefersReduced) return; stop(); timer = setInterval(function () { go(idx + 1); }, interval); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function restart() { stop(); start(); }

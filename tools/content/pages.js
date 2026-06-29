@@ -43,6 +43,16 @@ const CLIENTS = [
 ];
 const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
 const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+
+// Diaporama plein cadre : une photo à la fois, légende lisible, auto + flèches.
+function photoSlideshow(ctx, items, label) {
+  return `<div class="photo-carousel reveal" data-interval="5000" role="group" aria-roledescription="diaporama" aria-label="${label}">
+  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt]) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw")}<figcaption class="lc-cap">${alt}</figcaption></figure></li>`).join("")}</ul></div>
+  <button type="button" class="lc-arrow lc-prev" aria-label="Photo précédente">${ARROW_L}</button>
+  <button type="button" class="lc-arrow lc-next" aria-label="Photo suivante">${ARROW_R}</button>
+  <div class="lc-counter" aria-hidden="true"></div>
+</div>`;
+}
 const clientsBand = `<div class="logo-carousel reveal" data-interval="3000" role="group" aria-roledescription="carrousel" aria-label="Références clients de STIM">
   <button type="button" class="lc-arrow lc-prev" aria-label="Logos précédents">${ARROW_L}</button>
   <div class="lc-viewport"><ul class="lc-track">${CLIENTS.map(([slug, alt, name]) => `<li class="lc-slide"><div class="lc-chip"><img loading="lazy" src="/assets/clients/${slug}.webp" alt="${alt}" width="150" height="150"></div><span class="lc-name">${name}</span></li>`).join("")}</ul></div>
@@ -89,8 +99,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
     <h2>${sec.h2}</h2>
     ${sec.paragraphs.map((p) => `<p>${p}</p>`).join("\n")}
     ${sec.list ? `<ul>${sec.list.map((li) => `<li>${li}</li>`).join("")}</ul>` : ""}`).join("\n");
-  const galleryHTML = s.gallery.map(([slug, alt]) =>
-    `<figure class="shot reveal">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
+  const galleryHTML = photoSlideshow(ctx, s.gallery, s.name + " — exemples de réalisations");
 
   const body = `
 <section class="page-hero">
@@ -120,7 +129,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
   <div class="container">
     <div class="eyebrow">En images</div>
     <div class="section-head reveal"><h2>Exemples de réalisations</h2></div>
-    <div class="gallery">${galleryHTML}</div>
+    ${galleryHTML}
     <div class="btn-row" style="margin-top:1.6rem"><a class="btn btn--ghost" href="/realisations/">Toutes nos réalisations</a></div>
   </div>
 </section>
@@ -166,8 +175,7 @@ exports.realisations = (ctx) => {
     ["charpente-metallique-portique-toiture", "Portiques et toiture en charpente métallique", ""],
     ["grue-mobile-stim-atelier", "Grue mobile STIM devant l'atelier", ""],
   ];
-  const gal = shots.map(([slug, alt, cls]) =>
-    `<figure class="shot reveal ${cls}">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
+  const gal = photoSlideshow(ctx, shots, "Réalisations STIM en charpente métallique");
   const body = `
 <section class="page-hero">
   <div class="container">${ctx.crumbHTML([{ name: "Accueil", url: "/" }, { name: "Réalisations", url: "/realisations/" }])}</div>
@@ -178,7 +186,7 @@ exports.realisations = (ctx) => {
   </div>
 </section>
 <section class="section darker">
-  <div class="container"><div class="gallery">${gal}</div></div>
+  <div class="container">${gal}</div>
 </section>
 <section class="section paper2 section--tight">
   <div class="container center">

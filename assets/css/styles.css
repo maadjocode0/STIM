@@ -273,24 +273,44 @@ strong{color:#fff;font-weight:700}
 .step p{color:var(--txt-dim);font-size:.95rem;margin:0}
 .section.light .step p{color:var(--txt-light-dim)}
 
-/* ---------- Clients logo carousel (logos in round chips, several per vue) ---------- */
-.logo-carousel{position:relative;max-width:var(--maxw);margin-inline:auto;display:flex;align-items:center;gap:clamp(.4rem,1.5vw,1rem)}
-.lc-viewport{flex:1 1 auto;min-width:0;overflow:hidden}
-.lc-track{display:flex;gap:clamp(1rem,2.5vw,1.8rem);padding-block:.6rem}
+/* ---------- Carrousels — mécanique partagée ---------- */
+.lc-viewport{min-width:0;overflow:hidden}
+.lc-track{display:flex}
 .lc-track.anim{transition:transform .55s var(--ease)}
-.lc-slide{flex:0 0 calc(50% - .5rem);display:flex;flex-direction:column;align-items:center;gap:.95rem}
-@media(min-width:560px){.lc-slide{flex-basis:calc(33.333% - .9rem)}}
-@media(min-width:920px){.lc-slide{flex-basis:calc(25% - 1.35rem)}}
+.lc-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--paper-3);background:#fff;display:grid;place-items:center;color:var(--ink);box-shadow:var(--shadow-soft);transition:border-color .2s,color .2s,transform .2s var(--ease),background .2s}
+.lc-arrow svg{width:22px;height:22px}
+@media(prefers-reduced-motion:reduce){.lc-track.anim{transition:none}}
+
+/* ---------- Carrousel logos clients (pastilles rondes, plusieurs par vue) ---------- */
+.logo-carousel{position:relative;max-width:var(--maxw);margin-inline:auto;display:flex;align-items:center;gap:clamp(.4rem,1.5vw,1rem)}
+.logo-carousel .lc-viewport{flex:1 1 auto}
+.logo-carousel .lc-track{gap:clamp(1rem,2.5vw,1.8rem);padding-block:.6rem}
+.logo-carousel .lc-slide{flex:0 0 calc(50% - .5rem);display:flex;flex-direction:column;align-items:center;gap:.95rem}
+@media(min-width:560px){.logo-carousel .lc-slide{flex-basis:calc(33.333% - .9rem)}}
+@media(min-width:920px){.logo-carousel .lc-slide{flex-basis:calc(25% - 1.35rem)}}
 .lc-chip{width:100%;max-width:176px;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 8px 26px -14px rgba(20,30,45,.4),0 2px 6px -3px rgba(20,30,45,.25);
   display:grid;place-items:center;padding:18%;margin-inline:auto;transition:transform .3s var(--ease),box-shadow .3s}
 .lc-chip img{max-width:100%;max-height:100%;width:auto;object-fit:contain}
-.lc-slide:hover .lc-chip{transform:translateY(-6px);box-shadow:0 18px 38px -16px rgba(20,30,45,.5),0 4px 10px -4px rgba(20,30,45,.3)}
+.logo-carousel .lc-slide:hover .lc-chip{transform:translateY(-6px);box-shadow:0 18px 38px -16px rgba(20,30,45,.5),0 4px 10px -4px rgba(20,30,45,.3)}
 .lc-name{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-light-dim);text-align:center}
-.lc-arrow{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--paper-3);background:#fff;display:grid;place-items:center;color:var(--ink);box-shadow:var(--shadow-soft);transition:border-color .2s,color .2s,transform .2s var(--ease),background .2s}
-.lc-arrow:hover{border-color:var(--accent);color:var(--accent-600);transform:translateY(-2px);background:#fff}
-.lc-arrow svg{width:22px;height:22px}
-@media(max-width:480px){.lc-arrow{width:40px;height:40px}.lc-arrow svg{width:19px;height:19px}}
-@media(prefers-reduced-motion:reduce){.lc-track.anim{transition:none}}
+.logo-carousel .lc-arrow:hover{border-color:var(--accent);color:var(--accent-600);transform:translateY(-2px)}
+@media(max-width:480px){.logo-carousel .lc-arrow{width:40px;height:40px}.logo-carousel .lc-arrow svg{width:19px;height:19px}}
+
+/* ---------- Diaporama photos (réalisations) — une grande photo + légende ---------- */
+.photo-carousel{position:relative;max-width:980px;margin-inline:auto}
+.photo-carousel .lc-viewport{border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+.photo-carousel .lc-slide{flex:0 0 100%}
+.photo-carousel .lc-figure{margin:0;position:relative;height:clamp(260px,52vw,540px);background:var(--ink-2)}
+.photo-carousel .lc-figure img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-carousel .lc-cap{position:absolute;left:0;right:0;bottom:0;margin:0;padding:2.6rem 1.2rem 1.1rem;color:#fff;
+  font-family:var(--ff-mono);font-size:.82rem;letter-spacing:.02em;line-height:1.4;background:linear-gradient(transparent,rgba(7,8,10,.92))}
+.photo-carousel .lc-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+.photo-carousel .lc-prev{left:.7rem}
+.photo-carousel .lc-next{right:.7rem}
+.photo-carousel .lc-arrow:hover{border-color:var(--accent);color:var(--accent-600);transform:translateY(-50%) scale(1.06)}
+.photo-carousel .lc-counter{position:absolute;top:.8rem;right:.9rem;z-index:2;color:#fff;font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.05em;
+  background:rgba(7,8,10,.55);padding:.32rem .7rem;border-radius:100px;backdrop-filter:blur(4px)}
+@media(max-width:480px){.photo-carousel .lc-arrow{width:40px;height:40px}.photo-carousel .lc-arrow svg{width:19px;height:19px}}
 
 /* ---------- Gallery ---------- */
 .gallery{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
