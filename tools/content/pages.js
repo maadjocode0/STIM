@@ -61,7 +61,7 @@ exports.servicesHub = (ctx, SERVICES) => {
 <section class="section paper2">
   <div class="container center">
     <div class="eyebrow">Notre méthode</div>
-    <div class="section-head"><h2>Un process maîtrisé de bout en bout</h2><p>Le même interlocuteur, de l'acier brut au bâtiment livré.</p></div>
+    <div class="section-head reveal"><h2>Un process maîtrisé de bout en bout</h2><p>Le même interlocuteur, de l'acier brut au bâtiment livré.</p></div>
     ${processSteps}
   </div>
 </section>
@@ -83,7 +83,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
     ${sec.paragraphs.map((p) => `<p>${p}</p>`).join("\n")}
     ${sec.list ? `<ul>${sec.list.map((li) => `<li>${li}</li>`).join("")}</ul>` : ""}`).join("\n");
   const galleryHTML = s.gallery.map(([slug, alt]) =>
-    `<figure class="shot">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
+    `<figure class="shot reveal">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
 
   const body = `
 <section class="page-hero">
@@ -112,7 +112,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
 <section class="section darker">
   <div class="container">
     <div class="eyebrow">En images</div>
-    <div class="section-head"><h2>Exemples de réalisations</h2></div>
+    <div class="section-head reveal"><h2>Exemples de réalisations</h2></div>
     <div class="gallery">${galleryHTML}</div>
     <div class="btn-row" style="margin-top:1.6rem"><a class="btn btn--ghost" href="/realisations/">Toutes nos réalisations</a></div>
   </div>
@@ -120,7 +120,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
 <section class="section light">
   <div class="container">
     <div class="eyebrow">FAQ</div>
-    <div class="section-head"><h2>Questions fréquentes</h2></div>
+    <div class="section-head reveal"><h2>Questions fréquentes</h2></div>
     ${ctx.faqHTML(s.faq)}
     <div style="margin-top:2rem"><h3 style="font-size:1.1rem;margin-bottom:.8rem">Autres services</h3><div class="btn-row">${related}</div></div>
   </div>
@@ -160,7 +160,7 @@ exports.realisations = (ctx) => {
     ["grue-mobile-stim-atelier", "Grue mobile STIM devant l'atelier", ""],
   ];
   const gal = shots.map(([slug, alt, cls]) =>
-    `<figure class="shot ${cls}">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
+    `<figure class="shot reveal ${cls}">${ctx.img(slug, alt, "(min-width:720px) 33vw, 100vw")}<figcaption>${alt}</figcaption></figure>`).join("\n");
   const body = `
 <section class="page-hero">
   <div class="container">${ctx.crumbHTML([{ name: "Accueil", url: "/" }, { name: "Réalisations", url: "/realisations/" }])}</div>
@@ -176,7 +176,7 @@ exports.realisations = (ctx) => {
 <section class="section light section--tight">
   <div class="container center">
     <div class="eyebrow">Ils nous ont fait confiance</div>
-    <div class="section-head" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie &amp; l'agro-alimentaire</h2></div>
+    <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie &amp; l'agro-alimentaire</h2></div>
     ${clientsBand}
   </div>
 </section>
@@ -213,7 +213,7 @@ exports.zonesHub = (ctx, CITIES) => {
   <div class="container split">
     <div>
       <div class="eyebrow">Tout le territoire</div>
-      <h2 class="section-head" style="margin-bottom:1rem">Et dans les autres gouvernorats</h2>
+      <h2 class="section-head reveal" style="margin-bottom:1rem">Et dans les autres gouvernorats</h2>
       <p class="lead" style="color:var(--txt-light-dim)">Au-delà de nos zones principales, STIM intervient dans l'ensemble de la Tunisie. Nous étudions chaque projet en intégrant la logistique de transport et de montage.</p>
       <ul class="prose" style="columns:2;max-width:30rem">${others}</ul>
       <div class="btn-row"><a class="btn" href="/contact/">Vérifier votre zone</a></div>
@@ -253,7 +253,7 @@ exports.cityPage = (ctx, c, CITIES, SERVICES) => {
 <section class="section">
   <div class="container">
     <div class="eyebrow">Sur place</div>
-    <h2 class="section-head" style="margin-bottom:1.4rem">${c.sectorsTitle}</h2>
+    <h2 class="section-head reveal" style="margin-bottom:1.4rem">${c.sectorsTitle}</h2>
     <div class="card" style="max-width:46rem"><ul class="ticks">${c.sectors.map((s) => `<li><span>${s}</span></li>`).join("")}</ul></div>
     <h3 style="margin:2rem 0 .8rem">Nos services disponibles à ${c.name}</h3>
     <div class="btn-row">${svcLinks}</div>
@@ -264,7 +264,7 @@ exports.cityPage = (ctx, c, CITIES, SERVICES) => {
 <section class="section light">
   <div class="container">
     <div class="eyebrow">FAQ</div>
-    <div class="section-head"><h2>${c.name} — questions fréquentes</h2></div>
+    <div class="section-head reveal"><h2>${c.name} — questions fréquentes</h2></div>
     ${ctx.faqHTML(c.faq)}
   </div>
 </section>
@@ -292,10 +292,10 @@ exports.about = (ctx) => {
 <section class="section">
   <div class="container">
     <div class="stats">
-      <div class="stat"><b>2008</b><span>année de création</span></div>
-      <div class="stat"><b>60</b><span>soudeurs, monteurs &amp; chaudronniers</span></div>
-      <div class="stat"><b>6</b><span>familles de structures métalliques</span></div>
-      <div class="stat"><b>Tunisie</b><span>zone d'intervention</span></div>
+      <div class="stat reveal"><b>2008</b><span>année de création</span></div>
+      <div class="stat reveal"><b>60</b><span>soudeurs, monteurs &amp; chaudronniers</span></div>
+      <div class="stat reveal"><b>6</b><span>familles de structures métalliques</span></div>
+      <div class="stat reveal"><b>Tunisie</b><span>zone d'intervention</span></div>
     </div>
   </div>
 </section>
@@ -319,7 +319,7 @@ exports.about = (ctx) => {
 <section class="section">
   <div class="container">
     <div class="eyebrow">Pourquoi nous choisir</div>
-    <h2 class="section-head" style="margin-bottom:1.4rem">Nos engagements</h2>
+    <h2 class="section-head reveal" style="margin-bottom:1.4rem">Nos engagements</h2>
     <div class="grid cols-3">
       <div class="card reveal"><h3>Maîtrise complète</h3><p>Étude, fabrication et montage par une seule entreprise : un seul interlocuteur, une responsabilité claire.</p></div>
       <div class="card reveal"><h3>Délais tenus</h3><p>La fabrication en atelier et nos moyens de levage propres réduisent les aléas et raccourcissent les délais.</p></div>
@@ -330,7 +330,7 @@ exports.about = (ctx) => {
 <section class="section light section--tight">
   <div class="container center">
     <div class="eyebrow">Ils nous ont fait confiance</div>
-    <div class="section-head" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie tunisienne</h2><p style="color:var(--txt-light-dim)">Groupe Hamrouni (Sotunol, Polyflex, Polymousse, Chimicouleurs Emballages, R.C.S.), GCA / Jouda, California Gym, K. Damak Shipping, Comet, Moulin d'Or, Groupe Mzabi / Dalmas, Concorde Berges du Lac. <span title="À vérifier" style="color:var(--accent)">[À VÉRIFIER]</span></p></div>
+    <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie tunisienne</h2><p style="color:var(--txt-light-dim)">Groupe Hamrouni (Sotunol, Polyflex, Polymousse, Chimicouleurs Emballages, R.C.S.), GCA / Jouda, California Gym, K. Damak Shipping, Comet, Moulin d'Or, Groupe Mzabi / Dalmas, Concorde Berges du Lac. <span title="À vérifier" style="color:var(--accent)">[À VÉRIFIER]</span></p></div>
     ${clientsBand}
   </div>
 </section>

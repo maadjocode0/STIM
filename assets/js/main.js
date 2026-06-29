@@ -29,18 +29,62 @@
     el.textContent = new Date().getFullYear();
   });
 
-  /* ---- Reveal on scroll ---- */
-  var reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && reveals.length) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
+  /* ---- Sticky header state ---- */
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", function () { window.requestAnimationFrame(onScroll); }, { passive: true });
+    onScroll();
   }
+
+  var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Animated stat counters ---- */
+  function animateCount(el) {
+    if (el.dataset.counted) return;
+    var m = el.textContent.trim().match(/^(\D*?)(\d[\d\s]*)(\D*)$/);
+    if (!m) return;
+    var prefix = m[1], suffix = m[3], target = parseInt(m[2].replace(/\s/g, ""), 10);
+    if (isNaN(target) || (m[2].replace(/\s/g, "").length >= 4 && target >= 1900)) return; // skip years
+    el.dataset.counted = "1";
+    if (prefersReduced) return;
+    var dur = 1200, start = null;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = prefix + Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---- Reveal on scroll (+ staggered siblings) & counters ----
+     A tiny rAF-throttled scroll/resize check — robust everywhere and never
+     leaves content hidden (no IntersectionObserver dependency). */
+  var reveals = document.querySelectorAll(".reveal");
+  reveals.forEach(function (el) {
+    var p = el.parentElement; if (!p) return;
+    var sibs = Array.prototype.filter.call(p.children, function (c) { return c.classList.contains("reveal"); });
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 70, 420) + "ms";
+  });
+  var counters = document.querySelectorAll(".hero__stat b, .stat b");
+  function inView(el, margin) { var r = el.getBoundingClientRect(); return r.top < (window.innerHeight - (margin || 0)) && r.bottom > 0; }
+  function checkReveals() {
+    var k;
+    for (k = 0; k < reveals.length; k++) { if (!reveals[k].classList.contains("in") && inView(reveals[k], 40)) reveals[k].classList.add("in"); }
+    for (k = 0; k < counters.length; k++) { if (!counters[k].dataset.counted && inView(counters[k], 0)) animateCount(counters[k]); }
+  }
+  var ticking = false;
+  function onScrollResize() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { checkReveals(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScrollResize, { passive: true });
+  window.addEventListener("resize", onScrollResize);
+  checkReveals();
+  requestAnimationFrame(checkReveals);
 
   /* ---- Devis form -> Web3Forms ---- */
   var form = document.getElementById("devis-form");
