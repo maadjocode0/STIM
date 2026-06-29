@@ -118,7 +118,7 @@ function footer() {
   <a class="c-tel" href="tel:+21655326160">${ICON_PHONE} Appeler</a>
   <a class="c-wa" href="${WA}" rel="noopener">${ICON_WA} WhatsApp</a>
 </nav>
-<script src="/assets/js/main.js" defer></script>`;
+<script src="/assets/js/main.js?v=2" defer></script>`;
 }
 
 function orgLD() {
@@ -192,7 +192,7 @@ function doc({ title, desc, urlPath, active, body, extraLD = "" }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/styles.css?v=2">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 ${orgLD()}
 ${extraLD}
