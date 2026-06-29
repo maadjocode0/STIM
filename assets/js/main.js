@@ -86,6 +86,62 @@
   checkReveals();
   requestAnimationFrame(checkReveals);
 
+  /* ---- Clients logo carousel ---- */
+  document.querySelectorAll(".logo-carousel").forEach(function (root) {
+    var track = root.querySelector(".lc-track");
+    var slides = root.querySelectorAll(".lc-slide");
+    var dotsWrap = root.querySelector(".lc-dots");
+    var prev = root.querySelector(".lc-prev");
+    var next = root.querySelector(".lc-next");
+    var n = slides.length;
+    if (!track || n < 2) return;
+    var idx = 0, timer = null;
+    var interval = parseInt(root.getAttribute("data-interval"), 10) || 4000;
+    var dots = [];
+    for (var i = 0; i < n; i++) {
+      (function (i) {
+        var d = document.createElement("button");
+        d.type = "button";
+        d.className = "lc-dot";
+        d.setAttribute("aria-label", "Aller à la référence " + (i + 1));
+        d.addEventListener("click", function () { go(i); restart(); });
+        dotsWrap.appendChild(d);
+        dots.push(d);
+      })(i);
+    }
+    function go(i) {
+      idx = (i + n) % n;
+      track.style.transform = "translateX(" + (-idx * 100) + "%)";
+      for (var k = 0; k < n; k++) {
+        dots[k].setAttribute("aria-current", k === idx ? "true" : "false");
+        slides[k].setAttribute("aria-hidden", k === idx ? "false" : "true");
+      }
+    }
+    function start() { if (prefersReduced) return; stop(); timer = setInterval(function () { go(idx + 1); }, interval); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+    if (next) next.addEventListener("click", function () { go(idx + 1); restart(); });
+    if (prev) prev.addEventListener("click", function () { go(idx - 1); restart(); });
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+    document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
+    var sx = null, vp = root.querySelector(".lc-viewport");
+    if (vp) {
+      vp.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; stop(); }, { passive: true });
+      vp.addEventListener("touchend", function (e) {
+        if (sx === null) return;
+        var dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40) { go(dx < 0 ? idx + 1 : idx - 1); }
+        sx = null; start();
+      }, { passive: true });
+    }
+    go(0);
+    track.classList.add("anim");
+    start();
+  });
+
   /* ---- Devis form -> Web3Forms ---- */
   var form = document.getElementById("devis-form");
   if (form) {

@@ -29,18 +29,28 @@ const processSteps = `<div class="steps">
   <div class="step reveal"><div class="step__n">ÉTAPE 06</div><h3>Couverture &amp; livraison</h3><p>Pose de la couverture et du bardage, contrôle final et réception.</p></div>
 </div>`;
 
-const clientsBand = `<ul class="clients">
-  <li><img loading="lazy" src="/assets/clients/sotunol.webp" alt="Sotunol — Groupe Hamrouni" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/moulin-dor.webp" alt="Moulin d'Or" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/gca.webp" alt="Générale de Conserves Alimentaires (GCA)" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/jouda.webp" alt="Jouda" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/california.webp" alt="California Gym" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/kdamak.webp" alt="K. Damak Shipping Company" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/comet.webp" alt="Comet" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/polyflex.webp" alt="Polyflex — Groupe Hamrouni" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/chimicouleurs.webp" alt="Chimicouleurs Emballages" width="120" height="56"></li>
-  <li><img loading="lazy" src="/assets/clients/mzabi.webp" alt="Groupe Mzabi — Dalmas" width="120" height="56"></li>
-</ul>`;
+const CLIENTS = [
+  ["sotunol", "Sotunol — Groupe Hamrouni", "Sotunol"],
+  ["moulin-dor", "Moulin d'Or", "Moulin d'Or"],
+  ["gca", "Générale de Conserves Alimentaires (GCA)", "Générale Conserves Alim."],
+  ["jouda", "Jouda", "Jouda"],
+  ["california", "California Gym", "California Gym"],
+  ["kdamak", "K. Damak Shipping Company", "K. Damak Shipping"],
+  ["comet", "Comet", "Comet"],
+  ["polyflex", "Polyflex — Groupe Hamrouni", "Polyflex"],
+  ["chimicouleurs", "Chimicouleurs Emballages", "Chimicouleurs"],
+  ["mzabi", "Groupe Mzabi — Dalmas", "Groupe Mzabi"],
+];
+const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
+const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+const clientsBand = `<div class="logo-carousel reveal" data-interval="3500" role="group" aria-roledescription="carrousel" aria-label="Références clients de STIM">
+  <div class="lc-stage">
+    <button type="button" class="lc-arrow lc-prev" aria-label="Référence précédente">${ARROW_L}</button>
+    <div class="lc-viewport"><ul class="lc-track">${CLIENTS.map(([slug, alt, name]) => `<li class="lc-slide"><img loading="lazy" src="/assets/clients/${slug}.webp" alt="${alt}" width="180" height="90"><span class="lc-name">${name}</span></li>`).join("")}</ul></div>
+    <button type="button" class="lc-arrow lc-next" aria-label="Référence suivante">${ARROW_R}</button>
+  </div>
+  <div class="lc-dots"></div>
+</div>`;
 
 /* ---------------- Services hub ---------------- */
 exports.servicesHub = (ctx, SERVICES) => {
