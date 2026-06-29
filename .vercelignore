@@ -1,0 +1,7 @@
+# Fichiers source / build — présents dans le repo mais inutiles au site déployé.
+# (Le site n'utilise que /assets/** déjà optimisé.)
+images/
+partenaires/
+tools/
+_logo_extract/
+*.docx
