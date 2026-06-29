@@ -130,9 +130,9 @@ strong{color:#fff;font-weight:700}
 .btn--ghost{--bg:transparent;--fg:var(--txt);border-color:var(--line-strong);box-shadow:none}
 .btn--ghost::after{display:none}
 .btn--ghost:hover{background:rgba(255,255,255,.07);border-color:var(--accent);box-shadow:none}
-.btn--wa{--bg:linear-gradient(135deg,#2ee06f,#1fae52);--fg:#04331a;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 10px 22px -14px rgba(37,211,102,.6)}
+.btn--wa{--bg:linear-gradient(135deg,#2ee06f,#1fae52);--fg:#ffffff;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 10px 22px -14px rgba(37,211,102,.6)}
 .btn--wa:hover{box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 16px 30px -14px rgba(37,211,102,.7)}
-.btn--lg{padding:1.1rem 2rem;font-size:1.06rem}
+.btn--lg{padding:.95rem 1.65rem;font-size:1.02rem}
 .btn--dark{--bg:linear-gradient(135deg,#23272e,#15171b);--fg:#fff;box-shadow:var(--shadow-soft)}
 .btn--dark:hover{box-shadow:var(--shadow)}
 .btn-row{display:flex;flex-wrap:wrap;gap:.8rem}
@@ -391,6 +391,8 @@ strong{color:#fff;font-weight:700}
 .footer h4{font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel-dim);margin-bottom:1.1rem;font-weight:600}
 .footer a{color:var(--txt-dim);display:inline-block;padding:.2rem 0;transition:color .15s}
 .footer a:hover{color:var(--accent)}
+/* keep the WhatsApp/CTA buttons' own colours inside the footer (override generic link colour) */
+.footer .btn,.footer .btn:hover{color:var(--fg);padding:.85rem 1.4rem}
 .footer__brand .brand{margin-bottom:1rem}
 .footer__brand p{color:var(--txt-dim);font-size:.92rem;max-width:34ch}
 .footer__nap{font-style:normal;color:var(--txt-dim);font-size:.92rem;line-height:1.8}

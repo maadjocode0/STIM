@@ -104,12 +104,12 @@ function footer() {
       <div><h4>Zones</h4><nav aria-label="Zones d'intervention"><a href="/charpente-metallique-ben-arous/">Ben Arous</a><br><a href="/charpente-metallique-tunis/">Tunis</a><br><a href="/charpente-metallique-sfax/">Sfax</a><br><a href="/charpente-metallique-sousse/">Sousse</a><br><a href="/zones-intervention/">Toute la Tunisie</a></nav></div>
       <div><h4>Contact</h4>
         <address class="footer__nap"><strong style="color:#fff">STIM</strong><br>Rue de Mercure, Zone Industrielle<br>2013 Ben Arous, Tunisie<br>Tél : <a href="tel:+21655326160">55 326 160</a> · <a href="tel:+21622326600">22 326 600</a><br><a href="tel:+21631422003">31 422 003</a><br>E-mail : <a href="mailto:contact@stim.tn">contact@stim.tn</a></address>
-        <div class="btn-row" style="margin-top:1rem"><a class="btn btn--wa" href="https://wa.me/21655326160?text=Bonjour%20STIM%2C%20je%20souhaite%20un%20devis." rel="noopener">WhatsApp</a></div>
+        <div class="btn-row" style="margin-top:1rem"><a class="btn btn--wa" href="https://wa.me/21655326160?text=Bonjour%20STIM%2C%20je%20souhaite%20un%20devis." rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-2.8.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-5.8c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-1.3-.5-2.4-1.6-3-2.8-.1-.3 0-.4.1-.6l.4-.5.2-.5v-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-1.4 1.4-1 3.5.1 4.9 1.6 2.1 3.4 3.2 5.6 3.9 1.4.4 1.9.3 2.5-.1.4-.3.9-.9 1-1.4.1-.4.1-.8 0-.9z"/></svg>WhatsApp</a></div>
       </div>
     </div>
     <div class="footer__bottom">
       <span>© <span data-year>2026</span> STIM — Société Tunisienne d'Industrie Métallique. Tous droits réservés.</span>
-      <span class="footer__legal">SUARL · Capital 200 000 DT · RC B 2480672008 · MF 1075327/P/A/M/000</span>
+      <span class="footer__legal">réalisé par Youssef Maazaoui</span>
     </div>
   </div>
 </footer>
@@ -117,7 +117,7 @@ function footer() {
   <a class="c-tel" href="tel:+21655326160">${ICON_PHONE} Appeler</a>
   <a class="c-wa" href="${WA}" rel="noopener">${ICON_WA} WhatsApp</a>
 </nav>
-<script src="/assets/js/main.js?v=4" defer></script>`;
+<script src="/assets/js/main.js?v=5" defer></script>`;
 }
 
 function orgLD() {
@@ -191,7 +191,7 @@ function doc({ title, desc, urlPath, active, body, extraLD = "" }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css?v=4">
+<link rel="stylesheet" href="/assets/css/styles.css?v=5">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 ${orgLD()}
 ${extraLD}
