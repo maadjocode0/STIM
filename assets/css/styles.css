@@ -412,7 +412,7 @@ strong{color:#fff;font-weight:700}
 .footer a{color:var(--txt-dim);display:inline-block;padding:.2rem 0;transition:color .15s}
 .footer a:hover{color:var(--accent)}
 /* keep the WhatsApp/CTA buttons' own colours inside the footer (override generic link colour) */
-.footer .btn{color:var(--fg);min-height:38px;padding:.5rem 1rem;font-size:.84rem;border-radius:9px}
+.footer .btn{color:var(--fg);display:inline-flex;align-items:center;min-height:38px;padding:.5rem 1rem;font-size:.84rem;border-radius:9px}
 .footer .btn:hover{color:var(--fg)}
 .footer__brand .brand{margin-bottom:1rem}
 .footer__brand p{color:var(--txt-dim);font-size:.92rem;max-width:34ch}
