@@ -113,29 +113,29 @@ strong{color:#fff;font-weight:700}
 /* ---------- Buttons ---------- */
 .btn{
   --bg:var(--grad-accent);--fg:#1a1500;
-  display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-  background:var(--bg);color:var(--fg);font-weight:700;font-family:var(--ff-display);
-  letter-spacing:.01em;padding:.95rem 1.6rem;border:1px solid transparent;border-radius:var(--radius-sm);
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  background:var(--bg);color:var(--fg);font-family:var(--ff-display);font-weight:600;
+  font-size:.9rem;letter-spacing:.01em;line-height:1;padding:.66rem 1.25rem;min-height:44px;border:1px solid transparent;border-radius:10px;
   position:relative;overflow:hidden;isolation:isolate;
-  box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 10px 22px -14px var(--accent-glow);
-  transition:transform .18s var(--ease),box-shadow .25s var(--ease),background .2s,color .2s;white-space:nowrap;
+  box-shadow:0 4px 14px -9px var(--accent-glow);
+  transition:transform .2s var(--ease),box-shadow .25s var(--ease),background .2s,color .2s;white-space:nowrap;
 }
 .btn svg{width:1.05em;height:1.05em;flex:none}
 /* sheen sweep */
 .btn::after{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-120%);
   background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.45) 50%,transparent 80%);transition:transform .6s var(--ease)}
-.btn:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 16px 30px -14px var(--accent-glow)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 9px 22px -10px var(--accent-glow)}
 .btn:hover::after{transform:translateX(120%)}
-.btn:active{transform:translateY(0)}
+.btn:active{transform:translateY(0) scale(.98)}
 .btn--ghost{--bg:transparent;--fg:var(--txt);border-color:var(--line-strong);box-shadow:none}
 .btn--ghost::after{display:none}
 .btn--ghost:hover{background:rgba(255,255,255,.07);border-color:var(--accent);box-shadow:none}
-.btn--wa{--bg:linear-gradient(135deg,#2ee06f,#1fae52);--fg:#ffffff;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 10px 22px -14px rgba(37,211,102,.6)}
-.btn--wa:hover{box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 16px 30px -14px rgba(37,211,102,.7)}
-.btn--lg{padding:.95rem 1.65rem;font-size:1.02rem}
+.btn--wa{--bg:linear-gradient(135deg,#2ee06f,#1fae52);--fg:#ffffff;box-shadow:0 4px 14px -9px rgba(37,211,102,.55)}
+.btn--wa:hover{box-shadow:0 9px 22px -10px rgba(37,211,102,.6)}
+.btn--lg{padding:.78rem 1.5rem;font-size:.95rem;min-height:48px}
 .btn--dark{--bg:linear-gradient(135deg,#23272e,#15171b);--fg:#fff;box-shadow:var(--shadow-soft)}
 .btn--dark:hover{box-shadow:var(--shadow)}
-.btn-row{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn-row{display:flex;flex-wrap:wrap;gap:.7rem}
 
 /* ---------- Header ---------- */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(14,16,19,.62);
@@ -412,7 +412,8 @@ strong{color:#fff;font-weight:700}
 .footer a{color:var(--txt-dim);display:inline-block;padding:.2rem 0;transition:color .15s}
 .footer a:hover{color:var(--accent)}
 /* keep the WhatsApp/CTA buttons' own colours inside the footer (override generic link colour) */
-.footer .btn,.footer .btn:hover{color:var(--fg);padding:.85rem 1.4rem}
+.footer .btn{color:var(--fg);min-height:38px;padding:.5rem 1rem;font-size:.84rem;border-radius:9px}
+.footer .btn:hover{color:var(--fg)}
 .footer__brand .brand{margin-bottom:1rem}
 .footer__brand p{color:var(--txt-dim);font-size:.92rem;max-width:34ch}
 .footer__nap{font-style:normal;color:var(--txt-dim);font-size:.92rem;line-height:1.8}
