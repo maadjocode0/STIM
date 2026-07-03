@@ -5,3 +5,7 @@ partenaires/
 tools/
 _logo_extract/
 *.docx
+README.md
+netlify.toml
+_headers
+.gitignore

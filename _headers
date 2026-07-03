@@ -1,8 +1,26 @@
-# Cloudflare Pages / Netlify — en-têtes
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
+# Netlify / Cloudflare Pages — en-têtes (source unique : ne PAS dupliquer dans netlify.toml)
+# NB : sur ces hébergeurs, exclure aussi images/ et tools/ du dossier publié.
+
+# CSS/JS non hashés : toujours revalider (ne JAMAIS remettre immutable ici)
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images / icônes / logos : 30 jours
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+/assets/clients/*
+  Cache-Control: public, max-age=2592000
+/assets/logo/*
+  Cache-Control: public, max-age=2592000
+/assets/icons/*
+  Cache-Control: public, max-age=2592000
+
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
