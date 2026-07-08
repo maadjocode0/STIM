@@ -22,7 +22,7 @@ function svcCard(ctx, s) {
 
 const processSteps = `<div class="steps">
   <div class="step reveal"><div class="step__n">ÉTAPE 01</div><h3>Étude &amp; conseil</h3><p>Analyse du besoin, visite de site et recommandations : portée, hauteur, charges, couverture.</p></div>
-  <div class="step reveal"><div class="step__n">ÉTAPE 02</div><h3>Conception &amp; calcul</h3><p>Dimensionnement Eurocode 3, plans d'exécution et notes de calcul.</p></div>
+  <div class="step reveal"><div class="step__n">ÉTAPE 02</div><h3>Conception &amp; calcul</h3><p>Dimensionnement selon les normes en vigueur, plans d'exécution et notes de calcul.</p></div>
   <div class="step reveal"><div class="step__n">ÉTAPE 03</div><h3>Fabrication atelier</h3><p>Débit, perçage, assemblage et soudure dans notre atelier de Ben Arous.</p></div>
   <div class="step reveal"><div class="step__n">ÉTAPE 04</div><h3>Traitement surface</h3><p>Protection anticorrosion : peinture industrielle ou galvanisation à chaud.</p></div>
   <div class="step reveal"><div class="step__n">ÉTAPE 05</div><h3>Transport &amp; montage</h3><p>Levage par nos grues mobiles et boulonnage haute résistance.</p></div>
