@@ -45,13 +45,36 @@ const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 
 // Diaporama plein cadre : une photo à la fois, légende lisible, auto + flèches.
+// La 1re diapositive est chargée immédiatement (elle est visible au premier rendu).
 function photoSlideshow(ctx, items, label) {
   return `<div class="photo-carousel reveal" data-interval="5000" role="group" aria-roledescription="diaporama" aria-label="${label}">
-  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt]) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw")}<figcaption class="lc-cap">${alt}</figcaption></figure></li>`).join("")}</ul></div>
+  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt], i) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw", { lazy: i > 0 })}<figcaption class="lc-cap" aria-hidden="true">${alt}</figcaption></figure></li>`).join("")}</ul></div>
   <button type="button" class="lc-arrow lc-prev" aria-label="Photo précédente">${ARROW_L}</button>
   <button type="button" class="lc-arrow lc-next" aria-label="Photo suivante">${ARROW_R}</button>
   <div class="lc-counter" aria-hidden="true"></div>
 </div>`;
+}
+
+/* Galerie filtrable par catégorie + lightbox (voir main.js). Chaque vignette est
+   un lien vers le fichier image : sans JS elle s'ouvre directement. */
+const GRID_CATS = [
+  ["all", "Tout"],
+  ["hangars", "Hangars"],
+  ["batiments", "Bâtiments"],
+  ["agro", "Agro-industriel"],
+  ["chaudronnerie", "Chaudronnerie & levage"],
+  ["architecture", "Architecture"],
+  ["atelier", "Atelier"],
+];
+function photoGrid(ctx, items) {
+  const chips = GRID_CATS.map(([id, label], i) =>
+    `<button type="button" class="chip${i === 0 ? " is-active" : ""}" data-filter="${id}" aria-pressed="${i === 0 ? "true" : "false"}">${label}</button>`).join("");
+  const figures = items.map(([slug, alt, cat]) =>
+    `<a class="shot gallery__item" data-cat="${cat}" href="${ctx.imgMax(slug)}">${ctx.img(slug, alt, "(min-width:920px) 33vw, (min-width:560px) 50vw, 100vw")}<span class="shot__cap">${alt}</span></a>`).join("\n      ");
+  return `<div class="chips reveal" role="group" aria-label="Filtrer les réalisations par catégorie">${chips}</div>
+    <div class="gallery" data-lightbox aria-label="Galerie des réalisations">
+      ${figures}
+    </div>`;
 }
 const clientsBand = `<div class="logo-carousel reveal" data-interval="3000" role="group" aria-roledescription="carrousel" aria-label="Références clients de STIM">
   <button type="button" class="lc-arrow lc-prev" aria-label="Logos précédents">${ARROW_L}</button>
@@ -119,7 +142,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
         <ul class="ticks">${s.bullets.map((b) => `<li><span>${b}</span></li>`).join("")}</ul>
       </div>
     </div>
-    <div><figure class="shot" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img(s.hero, s.heroAlt, "(min-width:920px) 45vw, 100vw")}</figure></div>
+    <div><figure class="shot" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img(s.hero, s.heroAlt, "(min-width:920px) 45vw, 100vw", { priority: true })}</figure></div>
   </div>
 </section>
 <section class="section">
@@ -155,27 +178,77 @@ ${ctx.ctaBand}`;
 
 /* ---------------- Réalisations ---------------- */
 exports.realisations = (ctx) => {
-  const shots = [
-    ["hangar-metallique-montage-charpente", "Montage de la charpente métallique d'un hangar industriel", "span2 row2"],
-    ["tour-metallique-elevateur-silos", "Tour métallique d'élévation et silos agro-industriels", "row2"],
-    ["hangar-metallique-fini-interieur", "Intérieur d'un hangar métallique terminé, grande portée", ""],
-    ["couverture-bardage-auvent-industriel", "Auvent industriel en charpente métallique et bac acier", ""],
-    ["charpente-process-agro-industriel", "Charpente de process pour unité agro-industrielle", ""],
-    ["hangar-metallique-double-nef", "Hangar métallique à double nef en construction", ""],
-    ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis", ""],
-    ["unite-industrielle-silos-charpente-metallique", "Unité industrielle avec silos et charpente métallique", ""],
-    ["couverture-bac-acier-charpente-metallique", "Couverture en bac acier sur charpente métallique", ""],
-    ["passerelle-metallique-garde-corps-agro", "Passerelle métallique avec garde-corps sur site industriel", ""],
-    ["montage-charpente-metallique-grue", "Montage d'une charpente métallique à la grue", "span2"],
-    ["hangar-metallique-bardage-exterieur", "Bardage extérieur d'un hangar métallique", ""],
-    ["mezzanine-metallique-plancher", "Mezzanine métallique et plancher acier", ""],
-    ["atelier-fabrication-pont-roulant-stim", "Atelier de fabrication STIM avec pont roulant", ""],
-    ["structure-process-agro-industrielle", "Structure de process agro-industrielle multi-niveaux", ""],
-    ["auvent-metallique-galvanise-bord-de-mer", "Auvent métallique galvanisé en bord de mer", ""],
-    ["charpente-metallique-portique-toiture", "Portiques et toiture en charpente métallique", ""],
-    ["grue-mobile-stim-atelier", "Grue mobile STIM devant l'atelier", ""],
+  // Diaporama « meilleur de » : les images les plus spectaculaires en tête.
+  const best = [
+    ["ossature-hangar-poutres-treillis", "Ossature métallique de hangar avec poutres en treillis"],
+    ["chantier-hangar-metallique-stim", "Chantier STIM : montage d'un hangar métallique à la grue mobile"],
+    ["charpente-cintree-facade-hotel", "Charpente métallique cintrée sur la façade d'un bâtiment hôtelier"],
+    ["verriere-atrium-structure-acier", "Verrière d'atrium sur structure en acier cintrée"],
+    ["grue-stim-levage-charpente", "Camion-grue STIM lors du levage d'une charpente métallique"],
+    ["cuves-inox-charpente-support", "Cuves inox sur charpente métallique de support"],
+    ["batiment-industriel-bardage-blanc", "Bâtiment industriel à bardage blanc en charpente métallique"],
+    ["auvent-metallique-bleu-station", "Auvent métallique bleu achevé avec couverture en bac acier"],
+    ["ossature-terrasse-metallique-bord-mer", "Ossature de plancher métallique pour terrasse en bord de mer"],
+    ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis"],
+    ["atelier-fabrication-pont-roulant-stim", "Atelier de fabrication STIM avec pont roulant"],
+    ["hangar-metallique-double-nef", "Hangar métallique à double nef en construction"],
   ];
-  const gal = photoSlideshow(ctx, shots, "Réalisations STIM en charpente métallique");
+  // Galerie complète, filtrable : [slug, alt, catégorie]
+  const grid = [
+    ["chantier-hangar-metallique-stim", "Montage d'un hangar métallique à la grue mobile — chantier STIM", "hangars"],
+    ["ossature-hangar-poutres-treillis", "Ossature de hangar avec poutres en treillis", "hangars"],
+    ["charpente-metallique-blanche-grande-portee", "Ossature blanche de grande portée en cours de montage", "hangars"],
+    ["portiques-hangar-metallique-montage", "Portiques d'un hangar métallique en cours de montage", "hangars"],
+    ["portiques-acier-zone-industrielle", "Portiques en acier montés en zone industrielle", "hangars"],
+    ["poutre-treillis-charpente-detail", "Détail d'une poutre en treillis", "hangars"],
+    ["chantier-charpente-metallique-portiques", "Portiques et pannes en place sur chantier", "hangars"],
+    ["interieur-hangar-montage-charpente", "Intérieur d'un hangar en cours de montage", "hangars"],
+    ["charpente-hangar-ossature-beton", "Charpente métallique de hangar sur ossature béton", "hangars"],
+    ["hangar-metallique-montage-charpente", "Montage de la charpente métallique d'un hangar industriel", "hangars"],
+    ["hangar-metallique-double-nef", "Hangar métallique à double nef en construction", "hangars"],
+    ["hangar-metallique-fini-interieur", "Intérieur d'un hangar métallique terminé, grande portée", "hangars"],
+    ["hangar-metallique-ossature-acier", "Ossature en acier d'un hangar métallique", "hangars"],
+    ["charpente-metallique-portique-toiture", "Portiques et toiture en charpente métallique", "hangars"],
+    ["montage-charpente-metallique-grue", "Montage d'une charpente métallique à la grue", "hangars"],
+    ["batiment-industriel-bardage-blanc", "Bâtiment industriel à bardage blanc", "batiments"],
+    ["hangars-industriels-bardage-allee", "Hangars industriels à bardage métallique", "batiments"],
+    ["bardage-interieur-hangar-metallique", "Bardage et charpente apparente d'un hangar", "batiments"],
+    ["facade-bardage-hangar-industriel", "Façade en bardage d'un hangar industriel", "batiments"],
+    ["batiment-industriel-metallique-interieur", "Intérieur d'un bâtiment industriel métallique", "batiments"],
+    ["hangar-metallique-bardage-exterieur", "Bardage extérieur d'un hangar métallique", "batiments"],
+    ["couverture-bac-acier-charpente-metallique", "Couverture en bac acier sur charpente métallique", "batiments"],
+    ["couverture-bardage-auvent-industriel", "Auvent industriel en charpente métallique et bac acier", "batiments"],
+    ["hangar-metallique-grande-portee", "Bâtiment métallique de grande portée", "batiments"],
+    ["cuves-inox-charpente-support", "Cuves inox sur charpente de support", "agro"],
+    ["structure-metallique-process-etages", "Structure de process à plusieurs niveaux avec escaliers", "agro"],
+    ["plateforme-metallique-cuve-process", "Plateforme métallique supportant une cuve de process", "agro"],
+    ["charpente-support-cuves-agro", "Charpente supportant des cuves en unité agro-industrielle", "agro"],
+    ["structure-process-pont-roulant", "Structure de process avec pont roulant", "agro"],
+    ["charpente-process-agro-industriel", "Charpente de process pour unité agro-industrielle", "agro"],
+    ["unite-industrielle-silos-charpente-metallique", "Unité industrielle avec silos et charpente métallique", "agro"],
+    ["tour-metallique-elevateur-silos", "Tour métallique d'élévation et silos agro-industriels", "agro"],
+    ["structure-process-agro-industrielle", "Structure de process agro-industrielle multi-niveaux", "agro"],
+    ["passerelle-metallique-garde-corps-agro", "Passerelle métallique avec garde-corps sur site industriel", "agro"],
+    ["chaudronnerie-roulage-virole-acier", "Chaudronnerie : roulage d'une virole en acier dans l'atelier", "chaudronnerie"],
+    ["grue-stim-levage-charpente", "Camion-grue STIM lors du levage d'une charpente", "chaudronnerie"],
+    ["grue-mobile-stim-levage-structure", "Grue mobile STIM en levage d'une structure métallique", "chaudronnerie"],
+    ["levage-portiques-grue-mobile", "Levage des portiques métalliques à la grue mobile", "chaudronnerie"],
+    ["charpente-cintree-facade-hotel", "Charpente cintrée sur la façade d'un bâtiment hôtelier", "architecture"],
+    ["verriere-atrium-structure-acier", "Verrière d'atrium sur structure en acier", "architecture"],
+    ["auvent-metallique-bleu-station", "Auvent métallique bleu avec couverture en bac acier", "architecture"],
+    ["charpente-auvent-acier-bleu", "Charpente d'auvent en acier avec couverture bleue", "architecture"],
+    ["ossature-terrasse-metallique-bord-mer", "Ossature de terrasse métallique en bord de mer", "architecture"],
+    ["auvent-metallique-galvanise-bord-de-mer", "Auvent métallique galvanisé en bord de mer", "architecture"],
+    ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis", "architecture"],
+    ["ossature-toiture-surelevation-metallique", "Ossature de toiture en surélévation métallique", "architecture"],
+    ["mezzanine-metallique-plancher", "Mezzanine métallique et plancher acier", "architecture"],
+    ["atelier-fabrication-pont-roulant-stim", "Atelier de fabrication STIM avec pont roulant", "atelier"],
+    ["atelier-fabrication-poutres-acier-stim", "Assemblage de poutres en acier dans l'atelier STIM", "atelier"],
+    ["parc-stockage-acier-atelier", "Parc de stockage d'acier de l'atelier STIM", "atelier"],
+    ["grue-mobile-stim-parc-acier", "Grue mobile STIM dans le parc à acier", "atelier"],
+    ["grue-mobile-stim-atelier", "Grue mobile STIM devant l'atelier", "atelier"],
+  ];
+  const gal = photoSlideshow(ctx, best, "Réalisations STIM en charpente métallique");
   const body = `
 <section class="page-hero">
   <div class="container">${ctx.crumbHTML([{ name: "Accueil", url: "/" }, { name: "Réalisations", url: "/realisations/" }])}</div>
@@ -187,6 +260,13 @@ exports.realisations = (ctx) => {
 </section>
 <section class="section darker">
   <div class="container">${gal}</div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Galerie</div>
+    <div class="section-head reveal"><h2>Tous nos chantiers en images</h2><p>Filtrez par type d'ouvrage — cliquez sur une photo pour l'agrandir.</p></div>
+    ${photoGrid(ctx, grid)}
+  </div>
 </section>
 <section class="section paper2 section--tight">
   <div class="container center">
@@ -262,7 +342,7 @@ exports.cityPage = (ctx, c, CITIES, SERVICES) => {
 <section class="section light">
   <div class="container split">
     <div class="prose">${c.paragraphs.map((p) => `<p class="lead" style="color:var(--txt-light-dim)">${p}</p>`).join("")}</div>
-    <div><figure class="shot" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img(c.hero, c.heroAlt, "(min-width:920px) 45vw, 100vw")}</figure></div>
+    <div><figure class="shot" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img(c.hero, c.heroAlt, "(min-width:920px) 45vw, 100vw", { priority: true })}</figure></div>
   </div>
 </section>
 <section class="section">
@@ -331,6 +411,17 @@ exports.about = (ctx) => {
     </div>
   </div>
 </section>
+<section class="section darker">
+  <div class="container">
+    <div class="eyebrow">Nos moyens</div>
+    <div class="section-head reveal"><h2>Atelier, levage et chaudronnerie en propre</h2><p>Ponts roulants, machines de débit et de roulage, parc à acier et grues mobiles : STIM possède ses moyens de production et de levage — un gage de délais tenus.</p></div>
+    <div class="grid cols-3">
+      <figure class="shot reveal" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img("grue-mobile-stim-parc-acier", "Grue mobile STIM dans le parc à acier de l'atelier", "(min-width:760px) 33vw, 100vw")}</figure>
+      <figure class="shot reveal" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img("chaudronnerie-roulage-virole-acier", "Roulage d'une virole en acier dans l'atelier de chaudronnerie STIM", "(min-width:760px) 33vw, 100vw")}</figure>
+      <figure class="shot reveal" style="aspect-ratio:4/3;border-radius:var(--radius)">${ctx.img("grue-stim-levage-charpente", "Camion-grue STIM lors du levage d'une charpente métallique", "(min-width:760px) 33vw, 100vw")}</figure>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="container">
     <div class="eyebrow">Pourquoi nous choisir</div>
@@ -345,7 +436,7 @@ exports.about = (ctx) => {
 <section class="section paper2 section--tight">
   <div class="container center">
     <div class="eyebrow">Ils nous ont fait confiance</div>
-    <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie tunisienne</h2><p style="color:var(--txt-light-dim)">Groupe Hamrouni (Sotunol, Polyflex, Polymousse, Chimicouleurs Emballages, R.C.S.), GCA / Jouda, California Gym, K. Damak Shipping, Comet, Moulin d'Or, Groupe Mzabi / Dalmas, Concorde Berges du Lac. <span title="À vérifier" style="color:var(--accent)">[À VÉRIFIER]</span></p></div>
+    <div class="section-head reveal" style="margin-bottom:2rem"><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem)">Des références dans l'industrie tunisienne</h2><p style="color:var(--txt-light-dim)">Groupe Hamrouni (Sotunol, Polyflex, Polymousse, Chimicouleurs Emballages), GCA / Jouda, California Gym, K. Damak Shipping, Comet, Moulin d'Or, Groupe Mzabi / Dalmas, Concorde Berges du Lac, ainsi que CERAT, Tunisie Sucre, la Verrerie de Naassen et Gamma Auto Tunisie (Groupe Khalfallah).</p></div>
     ${clientsBand}
   </div>
 </section>

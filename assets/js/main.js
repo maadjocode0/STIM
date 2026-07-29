@@ -114,10 +114,15 @@
     function restart() { stop(); start(); }
     if (next) next.addEventListener("click", function () { go(idx + 1); restart(); });
     if (prev) prev.addEventListener("click", function () { go(idx - 1); restart(); });
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(idx + 1); restart(); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); go(idx - 1); restart(); }
+    });
     root.addEventListener("mouseenter", stop);
     root.addEventListener("mouseleave", start);
-    root.addEventListener("focusin", stop);
-    root.addEventListener("focusout", start);
+    root.addEventListener("focusin", function () { stop(); track.setAttribute("aria-live", "polite"); });
+    root.addEventListener("focusout", function () { track.setAttribute("aria-live", "off"); start(); });
+    track.setAttribute("aria-live", "off");
     document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
     var sx = null;
     vp.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; stop(); }, { passive: true });
@@ -136,6 +141,76 @@
     track.classList.add("anim");
     start();
   });
+
+  /* ---- Galerie : filtres par catégorie ---- */
+  var chipsBar = document.querySelector(".chips");
+  var galleryRoot = document.querySelector("[data-lightbox]");
+  if (chipsBar && galleryRoot) {
+    var chips = chipsBar.querySelectorAll(".chip");
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var f = chip.getAttribute("data-filter");
+        chips.forEach(function (c) {
+          var on = c === chip;
+          c.classList.toggle("is-active", on);
+          c.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        galleryRoot.querySelectorAll(".gallery__item").forEach(function (it) {
+          it.classList.toggle("is-hidden", f !== "all" && it.getAttribute("data-cat") !== f);
+        });
+      });
+    });
+  }
+
+  /* ---- Lightbox (galerie réalisations) ---- */
+  if (galleryRoot && window.HTMLDialogElement) {
+    var lb = document.createElement("dialog");
+    lb.className = "lightbox";
+    lb.setAttribute("aria-label", "Photo agrandie");
+    lb.innerHTML =
+      '<figure><img alt=""><figcaption><span class="lb-cap"></span><span class="lb-count"></span></figcaption></figure>' +
+      '<button type="button" class="lc-arrow lb-prev" aria-label="Photo précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>' +
+      '<button type="button" class="lc-arrow lb-next" aria-label="Photo suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
+      '<button type="button" class="lb-close" aria-label="Fermer">&times;</button>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector(".lb-cap");
+    var lbCount = lb.querySelector(".lb-count");
+    var lbItems = [], lbIdx = 0;
+    function visibleItems() {
+      return Array.prototype.filter.call(
+        galleryRoot.querySelectorAll(".gallery__item"),
+        function (a) { return !a.classList.contains("is-hidden"); }
+      );
+    }
+    function lbShow(i) {
+      var n = lbItems.length;
+      lbIdx = (i + n) % n;
+      var a = lbItems[lbIdx];
+      var thumb = a.querySelector("img");
+      lbImg.src = a.getAttribute("href");
+      lbImg.alt = thumb ? thumb.alt : "";
+      lbCap.textContent = thumb ? thumb.alt : "";
+      lbCount.textContent = (lbIdx + 1) + " / " + n;
+    }
+    galleryRoot.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest(".gallery__item") : null;
+      if (!a) return;
+      e.preventDefault();
+      lbItems = visibleItems();
+      lbShow(lbItems.indexOf(a));
+      lb.showModal();
+    });
+    lb.querySelector(".lb-prev").addEventListener("click", function () { lbShow(lbIdx - 1); });
+    lb.querySelector(".lb-next").addEventListener("click", function () { lbShow(lbIdx + 1); });
+    lb.querySelector(".lb-close").addEventListener("click", function () { lb.close(); });
+    lb.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); lbShow(lbIdx + 1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); lbShow(lbIdx - 1); }
+    });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener("close", function () { lbImg.src = ""; });
+  }
 
   /* ---- Devis form -> Web3Forms ---- */
   var form = document.getElementById("devis-form");

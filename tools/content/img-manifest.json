@@ -1,0 +1,494 @@
+{
+ "atelier-fabrication-pont-roulant-stim": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "atelier-fabrication-poutres-acier-stim": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "auvent-metallique-bleu-station": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "auvent-metallique-galvanise-bord-de-mer": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "bardage-interieur-hangar-metallique": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "batiment-industriel-bardage-blanc": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "batiment-industriel-metallique-interieur": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 600
+ },
+ "chantier-charpente-metallique-portiques": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "chantier-hangar-metallique-stim": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "charpente-auvent-acier-bleu": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "charpente-cintree-facade-hotel": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1600
+ },
+ "charpente-hangar-ossature-beton": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "charpente-metallique-blanche-grande-portee": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "charpente-metallique-hangar-ben-arous": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "charpente-metallique-portique-toiture": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 1067
+ },
+ "charpente-process-agro-industriel": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 450
+ },
+ "charpente-support-cuves-agro": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1600
+ },
+ "chaudronnerie-roulage-virole-acier": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1600
+ },
+ "couverture-bac-acier-charpente-metallique": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "couverture-bardage-auvent-industriel": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "cuves-inox-charpente-support": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "facade-bardage-hangar-industriel": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "grue-mobile-stim-atelier": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "grue-mobile-stim-levage-structure": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1600
+ },
+ "grue-mobile-stim-parc-acier": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "grue-stim-levage-charpente": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "hangar-metallique-bardage-exterieur": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 1067
+ },
+ "hangar-metallique-double-nef": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "hangar-metallique-fini-interieur": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 1067
+ },
+ "hangar-metallique-grande-portee": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 600
+ },
+ "hangar-metallique-montage-charpente": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "hangar-metallique-ossature-acier": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 600
+ },
+ "hangars-industriels-bardage-allee": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "interieur-hangar-montage-charpente": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "levage-portiques-grue-mobile": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "mezzanine-metallique-plancher": {
+  "widths": [
+   400
+  ],
+  "w": 400,
+  "h": 335
+ },
+ "montage-charpente-metallique-grue": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "ossature-hangar-poutres-treillis": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "ossature-metallique-batiment": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 600
+ },
+ "ossature-terrasse-metallique-bord-mer": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "ossature-toiture-surelevation-metallique": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 600
+ },
+ "parc-stockage-acier-atelier": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "passerelle-metallique-garde-corps-agro": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 450
+ },
+ "plancher-metallique-berges-du-lac-tunis": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 900
+ },
+ "plateforme-metallique-cuve-process": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "portiques-acier-zone-industrielle": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "portiques-hangar-metallique-montage": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "poutre-treillis-charpente-detail": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "structure-metallique-process-etages": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1600
+ },
+ "structure-process-agro-industrielle": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 450
+ },
+ "structure-process-pont-roulant": {
+  "widths": [
+   400,
+   800,
+   1200,
+   1600
+  ],
+  "w": 1600,
+  "h": 1200
+ },
+ "tour-metallique-elevateur-silos": {
+  "widths": [
+   400
+  ],
+  "w": 400,
+  "h": 712
+ },
+ "unite-industrielle-silos-charpente-metallique": {
+  "widths": [
+   400,
+   800
+  ],
+  "w": 800,
+  "h": 450
+ },
+ "verriere-atrium-structure-acier": {
+  "widths": [
+   400,
+   800,
+   1200
+  ],
+  "w": 1200,
+  "h": 1599
+ }
+}

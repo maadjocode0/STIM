@@ -133,19 +133,19 @@ Build command vide, *output directory* = `/`. Le fichier `_headers` gère le cac
 
 ---
 
-## 7. ✅ À me fournir / vérifier (marqué `[À VÉRIFIER]` dans le site)
+## 7. ✅ Suivi des éléments client
 
 | Élément | Statut |
 |---|---|
 | Clé **Web3Forms** (formulaire) | à créer (§ 5) |
-| Réseaux sociaux (Facebook / Instagram / LinkedIn) | liens à fournir (placeholders `#` dans le footer + `sameAs` du JSON-LD) |
-| Horaires d'ouverture exacts | 8h–17h / sam 8h–13h supposés |
-| Code postal du siège (2013 ?) | à confirmer |
-| Délais de fabrication annoncés (3–6 sem.) | à confirmer |
-| Nombre de structures livrées (« +100 ») | à confirmer (accueil) |
-| Détails des références clients (ville/type) | à confirmer |
+| Facebook | ✔ lien officiel intégré (footer + `sameAs`) |
+| Instagram / LinkedIn | pas de page — icônes retirées |
+| Horaires d'ouverture | ✔ confirmés (8h–17h / sam 8h–13h) |
+| Références clients | ✔ vérifiées via la fiche « Référence » fournie par STIM |
+| Délais de fabrication annoncés (3–6 sem.) | formulation prudente conservée (« confirmés dans le devis ») |
+| Photos chantiers | ✔ 28 nouvelles photos intégrées (`char*.jpg`, juillet 2026) |
 
-Cherchez `[À VÉRIFIER]` dans le code pour tout retrouver.
+Il ne reste plus de marqueur `[À VÉRIFIER]` dans les pages publiées.
 
 ---
 

@@ -10,41 +10,23 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const SITE = "https://stim.tn";
 
-/* available WebP widths per image slug (see tools/optimize.js output) */
-const IMG = {
-  "hangar-metallique-montage-charpente":[400,800,1200],
-  "charpente-metallique-hangar-ben-arous":[400,800,1200],
-  "couverture-bac-acier-charpente-metallique":[400,800,1200],
-  "montage-charpente-metallique-grue":[400,800,1200],
-  "batiment-industriel-metallique-interieur":[400,800],
-  "plancher-metallique-berges-du-lac-tunis":[400,800,1200],
-  "ossature-metallique-batiment":[400,800],
-  "auvent-metallique-galvanise-bord-de-mer":[400,800,1200],
-  "couverture-bardage-auvent-industriel":[400,800,1200],
-  "hangar-metallique-ossature-acier":[400,800],
-  "hangar-metallique-double-nef":[400,800,1200],
-  "hangar-metallique-grande-portee":[400,800],
-  "charpente-process-agro-industriel":[400,800],
-  "unite-industrielle-silos-charpente-metallique":[400,800],
-  "passerelle-metallique-garde-corps-agro":[400,800],
-  "tour-metallique-elevateur-silos":[400],
-  "structure-process-agro-industrielle":[400,800],
-  "mezzanine-metallique-plancher":[400],
-  "ossature-toiture-surelevation-metallique":[400,800],
-  "grue-mobile-stim-atelier":[400,800,1200],
-  "atelier-fabrication-pont-roulant-stim":[400,800,1200],
-  "atelier-fabrication-poutres-acier-stim":[400,800,1200],
-  "grue-mobile-stim-parc-acier":[400,800,1200],
-  "hangar-metallique-fini-interieur":[400,800],
-  "hangar-metallique-bardage-exterieur":[400,800],
-  "charpente-metallique-portique-toiture":[400,800],
-};
+/* Dimensions et largeurs disponibles par slug — généré par tools/optimize.js */
+const MANIFEST = require("./content/img-manifest.json");
 
-function img(slug, alt, sizes = "100vw", { lazy = true, cls = "" } = {}) {
-  const ws = IMG[slug] || [800];
-  const max = ws[ws.length - 1];
-  const srcset = ws.map((w) => `/assets/img/${slug}-${w}.webp ${w}w`).join(", ");
-  return `<img ${cls ? `class="${cls}" ` : ""}${lazy ? 'loading="lazy" decoding="async" ' : ""}src="/assets/img/${slug}-${max}.webp" srcset="${srcset}" sizes="${sizes}" alt="${alt}">`;
+function img(slug, alt, sizes = "100vw", { lazy = true, cls = "", priority = false } = {}) {
+  const m = MANIFEST[slug];
+  if (!m) throw new Error(`img(): slug inconnu « ${slug} » — lancer node tools/optimize.js ?`);
+  const max = m.widths[m.widths.length - 1];
+  const srcset = m.widths.map((w) => `/assets/img/${slug}-${w}.webp ${w}w`).join(", ");
+  const loading = priority ? 'fetchpriority="high" decoding="async" ' : lazy ? 'loading="lazy" decoding="async" ' : 'decoding="async" ';
+  return `<img ${cls ? `class="${cls}" ` : ""}${loading}src="/assets/img/${slug}-${max}.webp" srcset="${srcset}" sizes="${sizes}" width="${m.w}" height="${m.h}" alt="${alt}">`;
+}
+
+/* URL de la plus grande variante (utilisée par la lightbox de la galerie) */
+function imgMax(slug) {
+  const m = MANIFEST[slug];
+  if (!m) throw new Error(`imgMax(): slug inconnu « ${slug} »`);
+  return `/assets/img/${slug}-${m.widths[m.widths.length - 1]}.webp`;
 }
 
 const WA = "https://wa.me/21655326160?text=Bonjour%20STIM%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20de%20charpente%20m%C3%A9tallique.";
@@ -95,7 +77,7 @@ function footer() {
         <a class="brand" href="/" aria-label="STIM — Accueil"><span class="brand__logo"><img src="/assets/logo/stim-logo.webp" alt="STIM — Construction métallique" width="86" height="38"></span></a>
         <p>Société Tunisienne d'Industrie Métallique — conception, fabrication et montage de charpentes et structures métalliques depuis 2008.</p>
         <div class="footer__social" aria-label="Réseaux sociaux">
-          <a href="#" aria-label="Facebook de STIM" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.5-1.5H17V.3C16.7.2 15.8 0 14.8 0 12.5 0 11 1.4 11 4v2H8v3h3v9h3z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61566329604504" target="_blank" aria-label="Facebook de STIM" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3l.5-3H14V4.5c0-.8.3-1.5 1.5-1.5H17V.3C16.7.2 15.8 0 14.8 0 12.5 0 11 1.4 11 4v2H8v3h3v9h3z"/></svg></a>
           <a href="mailto:contact@stim.tn" aria-label="E-mail de STIM" title="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </div>
@@ -116,12 +98,12 @@ function footer() {
   <a class="c-tel" href="tel:+21655326160">${ICON_PHONE} Appeler</a>
   <a class="c-wa" href="${WA}" rel="noopener">${ICON_WA} WhatsApp</a>
 </nav>
-<script src="/assets/js/main.js?v=8" defer></script>`;
+<script src="/assets/js/main.js?v=9" defer></script>`;
 }
 
 function orgLD() {
   return `<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"GeneralContractor","@id":"https://stim.tn/#organization","name":"STIM — Société Tunisienne d'Industrie Métallique","url":"https://stim.tn/","logo":"https://stim.tn/assets/logo/stim-logo.png","telephone":"+21655326160","email":"contact@stim.tn","foundingDate":"2008","address":{"@type":"PostalAddress","streetAddress":"Rue de Mercure, Zone Industrielle","addressLocality":"Ben Arous","postalCode":"2013","addressCountry":"TN"},"geo":{"@type":"GeoCoordinates","latitude":36.7534669,"longitude":10.2399379},"areaServed":{"@type":"Country","name":"Tunisie"}}
+{"@context":"https://schema.org","@type":"GeneralContractor","@id":"https://stim.tn/#organization","name":"STIM — Société Tunisienne d'Industrie Métallique","url":"https://stim.tn/","logo":"https://stim.tn/assets/logo/stim-logo.png","telephone":"+21655326160","email":"contact@stim.tn","foundingDate":"2008","sameAs":["https://www.facebook.com/profile.php?id=61566329604504"],"address":{"@type":"PostalAddress","streetAddress":"Rue de Mercure, Zone Industrielle","addressLocality":"Ben Arous","postalCode":"2013","addressCountry":"TN"},"geo":{"@type":"GeoCoordinates","latitude":36.7534669,"longitude":10.2399379},"areaServed":{"@type":"Country","name":"Tunisie"}}
 </script>`;
 }
 
@@ -190,7 +172,7 @@ function doc({ title, desc, urlPath, active, body, extraLD = "" }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css?v=8">
+<link rel="stylesheet" href="/assets/css/styles.css?v=9">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 ${orgLD()}
 ${extraLD}
@@ -219,7 +201,7 @@ const SERVICES = require("./content/services.js");
 const CITIES = require("./content/cities.js");
 const PAGES = require("./content/pages.js");
 
-const ctx = { img, crumbHTML, breadcrumbLD, faqLD, faqHTML, ctaBand, SITE };
+const ctx = { img, imgMax, crumbHTML, breadcrumbLD, faqLD, faqHTML, ctaBand, SITE };
 
 console.log("Generating pages…");
 write("services/index.html", doc(PAGES.servicesHub(ctx, SERVICES)));

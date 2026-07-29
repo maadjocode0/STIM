@@ -38,6 +38,8 @@ module.exports = [
       "Extension possible de hangars existants"
     ],
     gallery: [
+      ["chantier-hangar-metallique-stim", "Chantier STIM : montage d'un hangar métallique à la grue mobile"],
+      ["charpente-metallique-blanche-grande-portee", "Ossature métallique blanche de grande portée en cours de montage"],
       ["hangar-metallique-grande-portee", "Hangar métallique de grande portée"],
       ["hangar-metallique-fini-interieur", "Intérieur d'un hangar métallique terminé"],
       ["charpente-metallique-portique-toiture", "Portiques et toiture en charpente métallique"]
@@ -55,8 +57,8 @@ module.exports = [
     h1: "Bâtiments industriels métalliques en Tunisie",
     metaTitle: "Bâtiment Industriel Métallique en Tunisie | STIM",
     metaDesc: "Usines, ateliers et entrepôts en charpente métallique : STIM conçoit et monte votre bâtiment industriel en Tunisie, adapté à vos process. Devis gratuit.",
-    hero: "hangar-metallique-grande-portee",
-    heroAlt: "Bâtiment industriel métallique de grande portée signé STIM",
+    hero: "batiment-industriel-bardage-blanc",
+    heroAlt: "Bâtiment industriel à bardage blanc réalisé en charpente métallique par STIM",
     lead: "Usines, ateliers de production et entrepôts : STIM réalise des bâtiments industriels en charpente métallique conçus autour de vos process, de vos ponts roulants et de vos charges d'exploitation.",
     intro: [
       "Un bâtiment industriel doit travailler pour votre production : circulation des flux, manutention, ponts roulants, mezzanines techniques, intégration de quais et de réseaux. La charpente métallique offre la flexibilité et les grands volumes nécessaires, avec un délai de réalisation maîtrisé.",
@@ -75,7 +77,7 @@ module.exports = [
         "Les structures sont calculées selon l'Eurocode 3 et assemblées par soudure et boulonnerie haute résistance par des soudeurs qualifiés. Le traitement anticorrosion (peinture industrielle ou galvanisation à chaud) est choisi selon l'agressivité de votre environnement de production."
       ] },
       { h2: "Une expérience confirmée dans l'industrie tunisienne", paragraphs: [
-        "STIM est intervenue pour des acteurs reconnus de l'industrie et de l'agro-alimentaire (Groupe Hamrouni, GCA, Moulin d'Or, Groupe Mzabi, entre autres). Cette expérience nous permet d'anticiper les exigences propres aux sites de production. <span title=\"À vérifier\" style=\"color:var(--accent)\">[À VÉRIFIER]</span>"
+        "STIM est intervenue pour des acteurs reconnus de l'industrie et de l'agro-alimentaire (Groupe Hamrouni, GCA, Moulin d'Or, Groupe Mzabi, entre autres). Cette expérience nous permet d'anticiper les exigences propres aux sites de production."
       ] }
     ],
     bullets: [
@@ -86,6 +88,8 @@ module.exports = [
       "Bâtiments évolutifs et extensibles"
     ],
     gallery: [
+      ["hangars-industriels-bardage-allee", "Hangars industriels à bardage métallique livrés par STIM"],
+      ["bardage-interieur-hangar-metallique", "Bardage et charpente apparente à l'intérieur d'un hangar métallique"],
       ["batiment-industriel-metallique-interieur", "Intérieur d'un bâtiment industriel métallique"],
       ["ossature-metallique-batiment", "Ossature métallique d'un bâtiment"],
       ["ossature-toiture-surelevation-metallique", "Ossature de toiture en surélévation métallique"]
@@ -93,7 +97,7 @@ module.exports = [
     faq: [
       { q: "Pouvez-vous intégrer un pont roulant ?", a: "Oui, le pont roulant et son chemin de roulement sont dimensionnés dès l'étude en fonction de votre charge de levage et de votre portée." },
       { q: "Travaillez-vous en site occupé / en production ?", a: "Nous organisons les interventions (extensions, surélévations) pour limiter l'impact sur votre activité, avec un phasage adapté à votre site." },
-      { q: "Quels délais pour un bâtiment industriel ?", a: "Les délais dépendent de la surface et de la complexité ; ils sont confirmés dans le devis après étude. <span title=\"À vérifier\" style=\"color:var(--accent)\">[À VÉRIFIER]</span>" }
+      { q: "Quels délais pour un bâtiment industriel ?", a: "Les délais dépendent de la surface et de la complexité ; ils sont confirmés dans le devis après étude." }
     ]
   },
 
@@ -134,6 +138,8 @@ module.exports = [
       "Rénovation de couvertures existantes"
     ],
     gallery: [
+      ["facade-bardage-hangar-industriel", "Façade en bardage d'un hangar industriel"],
+      ["charpente-auvent-acier-bleu", "Charpente d'auvent en acier avec couverture bleue"],
       ["couverture-bac-acier-charpente-metallique", "Couverture en bac acier sur charpente métallique"],
       ["auvent-metallique-galvanise-bord-de-mer", "Auvent métallique galvanisé en bord de mer"],
       ["hangar-metallique-bardage-exterieur", "Bardage extérieur d'un hangar métallique"]
@@ -156,7 +162,7 @@ module.exports = [
     lead: "Charpentes de process, supports de silos, tours d'élévation et plateformes d'exploitation : STIM est un partenaire de référence des minoteries, huileries et conserveries tunisiennes.",
     intro: [
       "Les unités agro-industrielles imposent des structures spécifiques : supporter des silos et des équipements lourds, intégrer des convoyeurs, donner accès aux machines par des plateformes et des passerelles, le tout en respectant l'hygiène et la sécurité.",
-      "STIM conçoit et monte ces charpentes de process pour des acteurs majeurs du secteur — Groupe Hamrouni (Sotunol, Polyflex…), GCA, Moulin d'Or, Groupe Mzabi — partout en Tunisie. <span title=\"À vérifier\" style=\"color:var(--accent)\">[À VÉRIFIER]</span>"
+      "STIM conçoit et monte ces charpentes de process pour des acteurs majeurs du secteur — Groupe Hamrouni (Sotunol, Polyflex…), GCA, Moulin d'Or, Groupe Mzabi — partout en Tunisie."
     ],
     sections: [
       { h2: "Nos ouvrages pour l'agro-industrie", paragraphs: [
@@ -182,6 +188,8 @@ module.exports = [
       "Références : minoteries, huileries, conserveries"
     ],
     gallery: [
+      ["cuves-inox-charpente-support", "Cuves inox sur charpente métallique de support"],
+      ["structure-metallique-process-etages", "Structure métallique de process à plusieurs niveaux"],
       ["unite-industrielle-silos-charpente-metallique", "Unité industrielle avec silos et charpente métallique"],
       ["tour-metallique-elevateur-silos", "Tour métallique d'élévation à côté des silos"],
       ["structure-process-agro-industrielle", "Structure de process agro-industrielle multi-niveaux"],
@@ -228,6 +236,7 @@ module.exports = [
       "Intégration sur bâtiment neuf ou existant"
     ],
     gallery: [
+      ["ossature-terrasse-metallique-bord-mer", "Ossature de plancher métallique pour terrasse en surélévation en bord de mer"],
       ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis"],
       ["ossature-toiture-surelevation-metallique", "Ossature de surélévation métallique"]
     ],
@@ -273,6 +282,7 @@ module.exports = [
       "Finition peinture ou galvanisation"
     ],
     gallery: [
+      ["structure-metallique-process-etages", "Escaliers et plateformes sur structure métallique à plusieurs niveaux"],
       ["passerelle-metallique-garde-corps-agro", "Passerelle et garde-corps métalliques"],
       ["structure-process-agro-industrielle", "Plateformes et accès sur structure de process"]
     ],

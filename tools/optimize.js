@@ -49,6 +49,34 @@ const PHOTOS = {
   "img25.jpeg": "hangar-metallique-fini-interieur",
   "img26.jpeg": "hangar-metallique-bardage-exterieur",
   "img27.jpeg": "charpente-metallique-portique-toiture",
+  "char1.jpg": "charpente-cintree-facade-hotel",
+  "char2.jpg": "charpente-metallique-blanche-grande-portee",
+  "char3.jpg": "auvent-metallique-bleu-station",
+  "char4.jpg": "ossature-terrasse-metallique-bord-mer",
+  "char5.jpg": "portiques-hangar-metallique-montage",
+  "char6.jpg": "verriere-atrium-structure-acier",
+  "char7.jpg": "chantier-hangar-metallique-stim",
+  "char9.jpg": "portiques-acier-zone-industrielle",
+  "char10.jpg": "ossature-hangar-poutres-treillis",
+  "char11.jpg": "poutre-treillis-charpente-detail",
+  "char12.jpg": "chantier-charpente-metallique-portiques",
+  "char13.jpg": "levage-portiques-grue-mobile",
+  "char14.jpg": "charpente-auvent-acier-bleu",
+  "char15.jpg": "parc-stockage-acier-atelier",
+  "char16.jpg": "interieur-hangar-montage-charpente",
+  "char17.jpg": "bardage-interieur-hangar-metallique",
+  "char18.jpg": "plateforme-metallique-cuve-process",
+  "char20.jpg": "cuves-inox-charpente-support",
+  "char21.jpg": "structure-process-pont-roulant",
+  "char22.jpg": "batiment-industriel-bardage-blanc",
+  "char23.jpg": "facade-bardage-hangar-industriel",
+  "char24.jpg": "charpente-hangar-ossature-beton",
+  "char25.jpg": "chaudronnerie-roulage-virole-acier",
+  "char26.jpg": "grue-stim-levage-charpente",
+  "char27.jpg": "grue-mobile-stim-levage-structure",
+  "char28.jpg": "charpente-support-cuves-agro",
+  "char29.jpg": "structure-metallique-process-etages",
+  "char30.jpg": "hangars-industriels-bardage-allee",
 };
 
 const CLIENTS = {
@@ -65,6 +93,7 @@ const CLIENTS = {
 };
 
 async function buildPhotos() {
+  const manifest = {};
   for (const [file, slug] of Object.entries(PHOTOS)) {
     const input = path.join(SRC, file);
     if (!fs.existsSync(input)) {
@@ -72,18 +101,31 @@ async function buildPhotos() {
       continue;
     }
     const meta = await sharp(input).metadata();
-    const maxW = meta.width || 1600;
-    const targets = WIDTHS.filter((w) => w <= maxW);
-    if (targets.length === 0) targets.push(maxW);
+    // EXIF orientations 5-8 swap width/height once .rotate() is applied
+    const swapped = (meta.orientation || 1) >= 5;
+    const srcW = (swapped ? meta.height : meta.width) || 1600;
+    const srcH = (swapped ? meta.width : meta.height) || 1200;
+    const targets = WIDTHS.filter((w) => w <= srcW);
+    if (targets.length === 0) targets.push(srcW);
+    let generated = 0;
     for (const w of targets) {
+      const out = path.join(OUT_IMG, `${slug}-${w}.webp`);
+      if (fs.existsSync(out)) continue; // keep existing files byte-identical
       await sharp(input)
         .rotate()
         .resize({ width: w, withoutEnlargement: true })
         .webp({ quality: QUALITY })
-        .toFile(path.join(OUT_IMG, `${slug}-${w}.webp`));
+        .toFile(out);
+      generated++;
     }
-    console.log(`  photo ${slug} -> ${targets.join(",")}`);
+    const maxW = targets[targets.length - 1];
+    manifest[slug] = { widths: targets, w: maxW, h: Math.round((maxW * srcH) / srcW) };
+    console.log(`  photo ${slug} -> ${targets.join(",")}${generated ? "" : " (déjà à jour)"}`);
   }
+  const out = path.join(__dirname, "content", "img-manifest.json");
+  const sorted = Object.fromEntries(Object.keys(manifest).sort().map((k) => [k, manifest[k]]));
+  fs.writeFileSync(out, JSON.stringify(sorted, null, 1) + "\n");
+  console.log(`  manifest -> ${path.relative(ROOT, out)} (${Object.keys(sorted).length} slugs)`);
 }
 
 async function buildClients() {
@@ -137,7 +179,7 @@ async function buildIcons() {
 
 async function buildOG() {
   // 1200x630 social card from a strong hero photo + dark overlay + text
-  const base = path.join(SRC, "img2.jpeg");
+  const base = path.join(SRC, "char10.jpg");
   if (!fs.existsSync(base)) return;
   const W = 1200, H = 630;
   const photo = await sharp(base).rotate().resize({ width: W, height: H, fit: "cover", position: "centre" }).toBuffer();
