@@ -98,6 +98,21 @@
     if (!track || !vp || n < 2) return;
     var idx = 0, timer = null;
     var interval = parseInt(root.getAttribute("data-interval"), 10) || 4000;
+    /* Pagination en tirets (diaporamas photo uniquement) */
+    var dashes = null;
+    if (root.classList.contains("photo-carousel")) {
+      dashes = document.createElement("div");
+      dashes.className = "lc-dashes";
+      for (var d = 0; d < n; d++) (function (i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "lc-dash";
+        b.setAttribute("aria-label", "Aller à la photo " + (i + 1) + " sur " + n);
+        b.addEventListener("click", function () { go(i); restart(); });
+        dashes.appendChild(b);
+      })(d);
+      root.appendChild(dashes);
+    }
     function stepPx() {
       var a = slides[0].getBoundingClientRect(), b = slides[1].getBoundingClientRect();
       return Math.abs(b.left - a.left) || a.width;
@@ -108,7 +123,11 @@
     }
     function maxIdx() { return Math.max(0, n - perView()); }
     function render() { track.style.transform = "translateX(" + (-idx * stepPx()) + "px)"; }
-    function go(i) { var m = maxIdx(); idx = i < 0 ? m : (i > m ? 0 : i); render(); if (counter) counter.textContent = (idx + 1) + " / " + n; }
+    function go(i) {
+      var m = maxIdx(); idx = i < 0 ? m : (i > m ? 0 : i); render();
+      if (counter) counter.textContent = (idx + 1) + " / " + n;
+      if (dashes) for (var k = 0; k < dashes.children.length; k++) dashes.children[k].classList.toggle("is-active", k === idx);
+    }
     function start() { if (prefersReduced) return; stop(); timer = setInterval(function () { go(idx + 1); }, interval); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function restart() { stop(); start(); }

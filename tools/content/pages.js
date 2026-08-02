@@ -44,14 +44,14 @@ const CLIENTS = [
 const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
 const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 
-// Diaporama plein cadre : une photo à la fois, légende lisible, auto + flèches.
-// La 1re diapositive est chargée immédiatement (elle est visible au premier rendu).
+// Diaporama plein cadre : une photo à la fois, titre + sous-titre en bas à
+// gauche, pagination en tirets (construite par main.js). La 1re diapositive
+// est chargée immédiatement (elle est visible au premier rendu).
 function photoSlideshow(ctx, items, label) {
   return `<div class="photo-carousel reveal" data-interval="5000" role="group" aria-roledescription="diaporama" aria-label="${label}">
-  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt], i) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw", { lazy: i > 0 })}<figcaption class="lc-cap" aria-hidden="true">${alt}</figcaption></figure></li>`).join("")}</ul></div>
+  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt, title, sub], i) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw", { lazy: i > 0 })}<figcaption class="lc-cap" aria-hidden="true"><span class="lc-title">${title || alt}</span>${sub ? `<span class="lc-sub">${sub}</span>` : ""}</figcaption></figure></li>`).join("")}</ul></div>
   <button type="button" class="lc-arrow lc-prev" aria-label="Photo précédente">${ARROW_L}</button>
   <button type="button" class="lc-arrow lc-next" aria-label="Photo suivante">${ARROW_R}</button>
-  <div class="lc-counter" aria-hidden="true"></div>
 </div>`;
 }
 
@@ -180,18 +180,18 @@ ${ctx.ctaBand}`;
 exports.realisations = (ctx) => {
   // Diaporama « meilleur de » : les images les plus spectaculaires en tête.
   const best = [
-    ["ossature-hangar-poutres-treillis", "Ossature métallique de hangar avec poutres en treillis"],
-    ["chantier-hangar-metallique-stim", "Chantier STIM : montage d'un hangar métallique à la grue mobile"],
-    ["charpente-cintree-facade-hotel", "Charpente métallique cintrée sur la façade d'un bâtiment hôtelier"],
-    ["verriere-atrium-structure-acier", "Verrière d'atrium sur structure en acier cintrée"],
-    ["grue-stim-levage-charpente", "Camion-grue STIM lors du levage d'une charpente métallique"],
-    ["cuves-inox-charpente-support", "Cuves inox sur charpente métallique de support"],
-    ["batiment-industriel-bardage-blanc", "Bâtiment industriel à bardage blanc en charpente métallique"],
-    ["auvent-metallique-bleu-station", "Auvent métallique bleu achevé avec couverture en bac acier"],
-    ["ossature-terrasse-metallique-bord-mer", "Ossature de plancher métallique pour terrasse en bord de mer"],
-    ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis"],
-    ["atelier-fabrication-pont-roulant-stim", "Atelier de fabrication STIM avec pont roulant"],
-    ["hangar-metallique-double-nef", "Hangar métallique à double nef en construction"],
+    ["ossature-hangar-poutres-treillis", "Ossature métallique de hangar avec poutres en treillis", "Ossature en treillis", "Poutres de grande portée sur chantier"],
+    ["chantier-hangar-metallique-stim", "Chantier STIM : montage d'un hangar métallique à la grue mobile", "Hangar métallique", "Montage à la grue mobile — chantier STIM"],
+    ["charpente-cintree-facade-hotel", "Charpente métallique cintrée sur la façade d'un bâtiment hôtelier", "Charpente cintrée", "Façade d'un bâtiment hôtelier"],
+    ["verriere-atrium-structure-acier", "Verrière d'atrium sur structure en acier cintrée", "Verrière d'atrium", "Structure en acier cintrée"],
+    ["grue-stim-levage-charpente", "Camion-grue STIM lors du levage d'une charpente métallique", "Levage sur chantier", "Camion-grue STIM"],
+    ["cuves-inox-charpente-support", "Cuves inox sur charpente métallique de support", "Process agro-industriel", "Cuves inox sur charpente de support"],
+    ["batiment-industriel-bardage-blanc", "Bâtiment industriel à bardage blanc en charpente métallique", "Bâtiment industriel", "Bardage blanc, livré clé en main"],
+    ["auvent-metallique-bleu-station", "Auvent métallique bleu achevé avec couverture en bac acier", "Auvent métallique", "Couverture en bac acier"],
+    ["ossature-terrasse-metallique-bord-mer", "Ossature de plancher métallique pour terrasse en bord de mer", "Terrasse en surélévation", "Ossature de plancher en bord de mer"],
+    ["plancher-metallique-berges-du-lac-tunis", "Plancher métallique sur ossature acier à Tunis", "Plancher métallique", "Berges du Lac, Tunis"],
+    ["atelier-fabrication-pont-roulant-stim", "Atelier de fabrication STIM avec pont roulant", "Atelier de fabrication", "Pont roulant et profilés acier"],
+    ["hangar-metallique-double-nef", "Hangar métallique à double nef en construction", "Hangar double nef", "En cours de construction"],
   ];
   // Galerie complète, filtrable : [slug, alt, catégorie]
   const grid = [
