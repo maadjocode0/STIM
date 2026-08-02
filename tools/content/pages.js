@@ -49,7 +49,7 @@ const ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 // est chargée immédiatement (elle est visible au premier rendu).
 function photoSlideshow(ctx, items, label) {
   return `<div class="photo-carousel reveal" data-interval="5000" role="group" aria-roledescription="diaporama" aria-label="${label}">
-  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt, title, sub], i) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "(min-width:1100px) 1100px, 100vw", { lazy: i > 0 })}<figcaption class="lc-cap" aria-hidden="true"><span class="lc-title">${title || alt}</span>${sub ? `<span class="lc-sub">${sub}</span>` : ""}</figcaption></figure></li>`).join("")}</ul></div>
+  <div class="lc-viewport"><ul class="lc-track">${items.map(([slug, alt, title, sub], i) => `<li class="lc-slide"><figure class="lc-figure">${ctx.img(slug, alt, "100vw", { lazy: i > 0 })}<figcaption class="lc-cap" aria-hidden="true"><span class="lc-title">${title || alt}</span>${sub ? `<span class="lc-sub">${sub}</span>` : ""}</figcaption></figure></li>`).join("")}</ul></div>
   <button type="button" class="lc-arrow lc-prev" aria-label="Photo précédente">${ARROW_L}</button>
   <button type="button" class="lc-arrow lc-next" aria-label="Photo suivante">${ARROW_R}</button>
 </div>`;
@@ -152,7 +152,9 @@ exports.servicePage = (ctx, s, SERVICES) => {
   <div class="container">
     <div class="eyebrow">En images</div>
     <div class="section-head reveal"><h2>Exemples de réalisations</h2></div>
-    ${galleryHTML}
+  </div>
+  ${galleryHTML}
+  <div class="container">
     <div class="btn-row" style="margin-top:1.6rem"><a class="btn btn--ghost" href="/realisations/">Toutes nos réalisations</a></div>
   </div>
 </section>
@@ -259,7 +261,7 @@ exports.realisations = (ctx) => {
   </div>
 </section>
 <section class="section darker">
-  <div class="container">${gal}</div>
+  ${gal}
 </section>
 <section class="section">
   <div class="container">
