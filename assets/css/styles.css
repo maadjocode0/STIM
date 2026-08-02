@@ -360,10 +360,13 @@ strong{color:#fff;font-weight:700}
 .field .req{color:var(--accent)}
 .field input,.field select,.field textarea{
   width:100%;background:var(--ink);border:1px solid var(--line-strong);border-radius:var(--radius-sm);
-  color:var(--txt);padding:.9rem 1.05rem;font:inherit;font-size:1rem;transition:border-color .15s,box-shadow .15s,background .15s}
+  color:var(--txt);padding:.9rem 1.05rem;font:inherit;font-size:1rem;line-height:1.5;
+  transition:border-color .15s,box-shadow .15s,background .15s}
 .section.light .field input,.section.light .field select,.section.light .field textarea{background:var(--paper-2);border-color:var(--paper-3);color:var(--ink)}
 .field input::placeholder,.field textarea::placeholder{color:var(--steel-dim)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(245,163,0,.18)}
+/* les <select> se calculent plus bas que les <input> : on aligne leur hauteur */
+.field select{min-height:calc(1.5em + 1.8rem + 2px)}
 .field textarea{min-height:140px;resize:vertical}
 .form-row{display:grid;gap:1.05rem}
 @media(min-width:560px){.form-row{grid-template-columns:1fr 1fr}}
