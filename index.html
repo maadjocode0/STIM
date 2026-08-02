@@ -38,7 +38,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/styles.css?v=12">
+<link rel="stylesheet" href="/assets/css/styles.css?v=13">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 
 <!-- JSON-LD : entreprise -->
@@ -351,7 +351,7 @@
       <div class="btn-row" style="margin-top:1.8rem"><a class="btn btn--ghost" href="/zones-intervention/">Toutes les zones desservies</a></div>
     </div>
     <div class="map-tn reveal">
-      <svg viewBox="-16 -14 330 588" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carte de la Tunisie : les 24 gouvernorats reliés à l'atelier STIM de Ben Arous, avec Tunis, Sousse et Sfax en avant">
+      <svg viewBox="-12 -14 312 588" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carte de la Tunisie : les 24 gouvernorats reliés à l'atelier STIM de Ben Arous, avec Tunis, Sousse et Sfax en avant">
         <title>Zones d'intervention de STIM en Tunisie</title>
         <defs>
           <linearGradient id="tn-fill" x1="0" y1="0" x2="0" y2="1">
@@ -359,78 +359,76 @@
             <stop offset="1" stop-color="#15181c"/>
           </linearGradient>
         </defs>
-        <!-- Contour stylisé de la Tunisie -->
-        <path class="tn-shape" d="M85,31 L161,5 L187,16 L192,43 L207,35 L241,23 L231,59 L204,78 L197,98 L214,119 L235,128 L241,153 L231,180 L221,206 L197,243 L173,270 L211,297 L252,309 L275,348 L275,403 L218,427 L190,505 L187,556 L160,548 L105,415 L54,345 L20,270 L41,211 L51,157 L48,70 Z"
+        <!-- Contour de la Tunisie — frontières Natural Earth projetées (x=(lon−7,5)×68 ; y=(37,35−lat)×78,3) -->
+        <path class="tn-shape" d="M134.8,551.4 L105.8,410.9 L63.9,379.3 L63.3,360.3 L7.7,313.7 L1.7,254.7 L43.6,211 L59.6,146.4 L48.8,71.8 L62.6,31.6 L136.7,0 L184.3,9.4 L182.3,49 L240,20.2 L244.8,35.2 L210.8,73.6 L210.3,109.8 L233.9,129.3 L224.9,197 L180.2,236.4 L193.1,279.1 L228.3,280.4 L245.4,317.6 L271.2,329.9 L267.4,390 L234.2,412.5 L213.3,437.6 L166.6,467.7 L173.8,500.2 L168,533.3 Z"
           fill="url(#tn-fill)" stroke="rgba(255,255,255,.2)" stroke-width="1.6" stroke-linejoin="round"/>
-        <!-- Djerba -->
-        <ellipse cx="234" cy="286" rx="11" ry="7" fill="url(#tn-fill)" stroke="rgba(255,255,255,.2)" stroke-width="1.4"/>
-        <!-- Réseau : les 24 gouvernorats reliés à l'atelier de Ben Arous -->
-        <g class="tn-routes" stroke="var(--accent, #F5A300)" stroke-width="1" stroke-dasharray="3 5" stroke-linecap="round">
-          <line x1="188" y1="58" x2="178" y2="40" opacity=".5"/>
-          <line x1="188" y1="58" x2="214" y2="119" opacity=".5"/>
-          <line x1="188" y1="58" x2="221" y2="206" opacity=".5"/>
-          <line x1="188" y1="58" x2="181" y2="31" opacity=".25"/>
-          <line x1="188" y1="58" x2="168" y2="40" opacity=".25"/>
-          <line x1="188" y1="58" x2="159" y2="13" opacity=".25"/>
-          <line x1="188" y1="58" x2="212" y2="68" opacity=".25"/>
-          <line x1="188" y1="58" x2="180" y2="74" opacity=".25"/>
-          <line x1="188" y1="58" x2="114" y2="49" opacity=".25"/>
-          <line x1="188" y1="58" x2="87" y2="67" opacity=".25"/>
-          <line x1="188" y1="58" x2="82" y2="92" opacity=".25"/>
-          <line x1="188" y1="58" x2="127" y2="99" opacity=".25"/>
-          <line x1="188" y1="58" x2="231" y2="126" opacity=".25"/>
-          <line x1="188" y1="58" x2="177" y2="131" opacity=".25"/>
-          <line x1="188" y1="58" x2="238" y2="146" opacity=".25"/>
-          <line x1="188" y1="58" x2="90" y2="171" opacity=".25"/>
-          <line x1="188" y1="58" x2="135" y2="181" opacity=".25"/>
-          <line x1="188" y1="58" x2="87" y2="229" opacity=".25"/>
-          <line x1="188" y1="58" x2="43" y2="269" opacity=".25"/>
-          <line x1="188" y1="58" x2="168" y2="266" opacity=".25"/>
-          <line x1="188" y1="58" x2="100" y2="286" opacity=".25"/>
-          <line x1="188" y1="58" x2="203" y2="313" opacity=".25"/>
-          <line x1="188" y1="58" x2="201" y2="346" opacity=".25"/>
+        <!-- Réseau : les 24 gouvernorats reliés à l'atelier de Ben Arous (187,51) -->
+        <g class="tn-routes" stroke="var(--accent, #F5A300)" stroke-width="1" stroke-dasharray="3 5" stroke-linecap="round" opacity=".3">
+          <line x1="187" y1="51" x2="181" y2="44"/>
+          <line x1="187" y1="51" x2="184" y2="36"/>
+          <line x1="187" y1="51" x2="174" y2="41"/>
+          <line x1="187" y1="51" x2="161" y2="6"/>
+          <line x1="187" y1="51" x2="215" y2="69"/>
+          <line x1="187" y1="51" x2="180" y2="74"/>
+          <line x1="187" y1="51" x2="114" y2="49"/>
+          <line x1="187" y1="51" x2="87" y2="67"/>
+          <line x1="187" y1="51" x2="82" y2="92"/>
+          <line x1="187" y1="51" x2="127" y2="99"/>
+          <line x1="187" y1="51" x2="214" y2="119"/>
+          <line x1="187" y1="51" x2="226" y2="124"/>
+          <line x1="187" y1="51" x2="177" y2="131"/>
+          <line x1="187" y1="51" x2="230" y2="145"/>
+          <line x1="187" y1="51" x2="91" y2="171"/>
+          <line x1="187" y1="51" x2="135" y2="181"/>
+          <line x1="187" y1="51" x2="215" y2="204"/>
+          <line x1="187" y1="51" x2="87" y2="229"/>
+          <line x1="187" y1="51" x2="43" y2="269"/>
+          <line x1="187" y1="51" x2="177" y2="272"/>
+          <line x1="187" y1="51" x2="100" y2="285"/>
+          <line x1="187" y1="51" x2="203" y2="313"/>
+          <line x1="187" y1="51" x2="201" y2="346"/>
         </g>
-        <!-- Gouvernorats (points) -->
+        <!-- Gouvernorats (points identiques) -->
         <g class="tn-govs">
-          <circle cx="181" cy="31" r="3.5" class="tn-dot tn-dot--sm"><title>Ariana</title></circle>
-          <circle cx="168" cy="40" r="3.5" class="tn-dot tn-dot--sm"><title>Manouba</title></circle>
-          <circle cx="159" cy="13" r="3.5" class="tn-dot tn-dot--sm"><title>Bizerte</title></circle>
-          <circle cx="212" cy="68" r="3.5" class="tn-dot tn-dot--sm"><title>Nabeul</title></circle>
-          <circle cx="180" cy="74" r="3.5" class="tn-dot tn-dot--sm"><title>Zaghouan</title></circle>
-          <circle cx="114" cy="49" r="3.5" class="tn-dot tn-dot--sm"><title>Béja</title></circle>
-          <circle cx="87" cy="67" r="3.5" class="tn-dot tn-dot--sm"><title>Jendouba</title></circle>
-          <circle cx="82" cy="92" r="3.5" class="tn-dot tn-dot--sm"><title>Le Kef</title></circle>
-          <circle cx="127" cy="99" r="3.5" class="tn-dot tn-dot--sm"><title>Siliana</title></circle>
-          <circle cx="231" cy="126" r="3.5" class="tn-dot tn-dot--sm"><title>Monastir</title></circle>
-          <circle cx="177" cy="131" r="3.5" class="tn-dot tn-dot--sm"><title>Kairouan</title></circle>
-          <circle cx="238" cy="146" r="3.5" class="tn-dot tn-dot--sm"><title>Mahdia</title></circle>
-          <circle cx="90" cy="171" r="3.5" class="tn-dot tn-dot--sm"><title>Kasserine</title></circle>
-          <circle cx="135" cy="181" r="3.5" class="tn-dot tn-dot--sm"><title>Sidi Bouzid</title></circle>
-          <circle cx="87" cy="229" r="3.5" class="tn-dot tn-dot--sm"><title>Gafsa</title></circle>
-          <circle cx="43" cy="269" r="3.5" class="tn-dot tn-dot--sm"><title>Tozeur</title></circle>
-          <circle cx="168" cy="266" r="3.5" class="tn-dot tn-dot--sm"><title>Gabès</title></circle>
-          <circle cx="100" cy="286" r="3.5" class="tn-dot tn-dot--sm"><title>Kébili</title></circle>
-          <circle cx="203" cy="313" r="3.5" class="tn-dot tn-dot--sm"><title>Médenine</title></circle>
-          <circle cx="201" cy="346" r="3.5" class="tn-dot tn-dot--sm"><title>Tataouine</title></circle>
+          <circle cx="184" cy="36" r="3.5" class="tn-dot"><title>Ariana</title></circle>
+          <circle cx="174" cy="41" r="3.5" class="tn-dot"><title>Manouba</title></circle>
+          <circle cx="161" cy="6" r="3.5" class="tn-dot"><title>Bizerte</title></circle>
+          <circle cx="215" cy="69" r="3.5" class="tn-dot"><title>Nabeul</title></circle>
+          <circle cx="180" cy="74" r="3.5" class="tn-dot"><title>Zaghouan</title></circle>
+          <circle cx="114" cy="49" r="3.5" class="tn-dot"><title>Béja</title></circle>
+          <circle cx="87" cy="67" r="3.5" class="tn-dot"><title>Jendouba</title></circle>
+          <circle cx="82" cy="92" r="3.5" class="tn-dot"><title>Le Kef</title></circle>
+          <circle cx="127" cy="99" r="3.5" class="tn-dot"><title>Siliana</title></circle>
+          <circle cx="226" cy="124" r="3.5" class="tn-dot"><title>Monastir</title></circle>
+          <circle cx="177" cy="131" r="3.5" class="tn-dot"><title>Kairouan</title></circle>
+          <circle cx="230" cy="145" r="3.5" class="tn-dot"><title>Mahdia</title></circle>
+          <circle cx="91" cy="171" r="3.5" class="tn-dot"><title>Kasserine</title></circle>
+          <circle cx="135" cy="181" r="3.5" class="tn-dot"><title>Sidi Bouzid</title></circle>
+          <circle cx="87" cy="229" r="3.5" class="tn-dot"><title>Gafsa</title></circle>
+          <circle cx="43" cy="269" r="3.5" class="tn-dot"><title>Tozeur</title></circle>
+          <circle cx="177" cy="272" r="3.5" class="tn-dot"><title>Gabès</title></circle>
+          <circle cx="100" cy="285" r="3.5" class="tn-dot"><title>Kébili</title></circle>
+          <circle cx="203" cy="313" r="3.5" class="tn-dot"><title>Médenine</title></circle>
+          <circle cx="201" cy="346" r="3.5" class="tn-dot"><title>Tataouine</title></circle>
         </g>
         <!-- Villes -->
         <a href="/charpente-metallique-tunis/" class="tn-city" aria-label="Charpente métallique à Tunis">
-          <circle cx="178" cy="40" r="6" class="tn-dot"/>
-          <text x="164" y="45" text-anchor="end" class="tn-lbl">TUNIS</text>
-        </a>
-        <a href="/charpente-metallique-ben-arous/" class="tn-city tn-city--hq" aria-label="Charpente métallique à Ben Arous — siège et atelier STIM">
-          <circle cx="188" cy="58" r="8" class="tn-dot tn-dot--hq"/>
-          <circle cx="188" cy="58" r="14" class="tn-pulse"/>
-          <text x="204" y="62" class="tn-lbl tn-lbl--hq">BEN AROUS</text>
-          <text x="204" y="76" class="tn-sub">SIÈGE &amp; ATELIER</text>
+          <circle cx="181" cy="44" r="3.5" class="tn-dot"/>
+          <text x="176" y="33" text-anchor="end" class="tn-lbl">TUNIS</text>
         </a>
         <a href="/charpente-metallique-sousse/" class="tn-city" aria-label="Charpente métallique à Sousse">
-          <circle cx="214" cy="119" r="6" class="tn-dot"/>
-          <text x="228" y="124" class="tn-lbl">SOUSSE</text>
+          <circle cx="214" cy="119" r="3.5" class="tn-dot"/>
+          <text x="228" y="112" class="tn-lbl">SOUSSE</text>
         </a>
         <a href="/charpente-metallique-sfax/" class="tn-city" aria-label="Charpente métallique à Sfax">
-          <circle cx="221" cy="206" r="6" class="tn-dot"/>
-          <text x="235" y="211" class="tn-lbl">SFAX</text>
+          <circle cx="215" cy="204" r="3.5" class="tn-dot"/>
+          <text x="229" y="209" class="tn-lbl">SFAX</text>
+        </a>
+        <a href="/charpente-metallique-ben-arous/" class="tn-city tn-city--hq" aria-label="Charpente métallique à Ben Arous — siège et atelier STIM">
+          <circle cx="187" cy="51" r="6.5" class="tn-dot tn-dot--hq"/>
+          <circle cx="187" cy="51" r="12" class="tn-pulse"/>
+          <text x="204" y="48" class="tn-lbl tn-lbl--hq">BEN AROUS</text>
+          <text x="204" y="61" class="tn-sub">SIÈGE &amp; ATELIER</text>
         </a>
       </svg>
     </div>
@@ -584,6 +582,6 @@
   <a class="c-wa" href="https://wa.me/21655326160?text=Bonjour%20STIM%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20de%20charpente%20m%C3%A9tallique." rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-2.8.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-5.8c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-1.3-.5-2.4-1.6-3-2.8-.1-.3 0-.4.1-.6l.4-.5.2-.5v-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-1.4 1.4-1 3.5.1 4.9 1.6 2.1 3.4 3.2 5.6 3.9 1.4.4 1.9.3 2.5-.1.4-.3.9-.9 1-1.4.1-.4.1-.8 0-.9z"/></svg> WhatsApp</a>
 </nav>
 
-<script src="/assets/js/main.js?v=12" defer></script>
+<script src="/assets/js/main.js?v=13" defer></script>
 </body>
 </html>
