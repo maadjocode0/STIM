@@ -466,7 +466,9 @@ strong{color:#fff;font-weight:700}
 .map-tn svg{display:block;width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(0,0,0,.45))}
 .tn-dot{fill:var(--accent);stroke:#0e1013;stroke-width:1.5;transition:r .2s var(--ease)}
 .tn-dot--hq{stroke-width:2.5}
-.tn-pulse{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:.55;transform-origin:187px 51px;animation:tnPulse 2.6s ease-out infinite}
+.tn-gov{transition:fill .25s}
+.tn-gov:hover{fill:#272c34}
+.tn-pulse{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:.55;transform-origin:185.8px 46.6px;animation:tnPulse 2.6s ease-out infinite}
 @keyframes tnPulse{0%{transform:scale(.55);opacity:.7}70%{transform:scale(1.25);opacity:0}100%{transform:scale(1.25);opacity:0}}
 .tn-lbl{font-family:var(--ff-mono);font-size:12px;letter-spacing:.14em;fill:#e8ecf0;font-weight:600}
 .tn-lbl--hq{font-size:13px;fill:#fff}
