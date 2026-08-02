@@ -403,7 +403,7 @@ exports.about = (ctx) => {
       <h2>Des équipes qualifiées</h2>
       <p>STIM, c'est une équipe de <strong>60 ouvriers</strong> — soudeurs, monteurs, chaudronniers et métalliers — formés à nos exigences de qualité et de sécurité. Notre atelier est équipé de ponts roulants et de machines de débit, et nous disposons de nos propres grues mobiles pour le levage sur chantier.</p>
       <h2>Qualité &amp; normes</h2>
-      <p>Nos structures sont dimensionnées selon les règles de calcul de l'Eurocode 3, avec prise en compte des charges climatiques tunisiennes. Les assemblages sont réalisés par soudure et boulonnerie haute résistance, puis protégés par peinture industrielle ou galvanisation à chaud selon l'environnement.</p>
+      <p>Nos structures sont dimensionnées selon les règles de calcul en vigueur, avec prise en compte des charges climatiques tunisiennes. Les assemblages sont réalisés par soudure et boulonnerie haute résistance, puis protégés par peinture industrielle ou galvanisation à chaud selon l'environnement.</p>
     </div>
     <div>
       <figure class="shot" style="aspect-ratio:4/3;border-radius:var(--radius);margin-bottom:.9rem">${ctx.img("atelier-fabrication-poutres-acier-stim", "Atelier de fabrication STIM : assemblage de poutres en acier", "(min-width:920px) 45vw, 100vw")}</figure>

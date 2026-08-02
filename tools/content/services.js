@@ -22,8 +22,8 @@ module.exports = [
         "<strong>Hangars agricoles</strong> — abris pour matériel, élevage, stockage de récoltes et intrants.",
         "<strong>Hangars commerciaux</strong> — show-rooms, dépôts de vente, espaces de distribution."
       ] },
-      { h2: "Conception et calcul selon l'Eurocode 3", paragraphs: [
-        "Notre bureau d'études dimensionne la structure selon les règles de calcul de l'Eurocode 3, en intégrant les charges climatiques tunisiennes (vent, surcharges) et les charges d'exploitation propres à votre activité. Vous recevez des plans d'exécution clairs avant fabrication.",
+      { h2: "Conception et calcul selon les normes en vigueur", paragraphs: [
+        "Notre bureau d'études dimensionne la structure selon les règles de calcul en vigueur, en intégrant les charges climatiques tunisiennes (vent, surcharges) et les charges d'exploitation propres à votre activité. Vous recevez des plans d'exécution clairs avant fabrication.",
         "Cette rigueur de calcul est la garantie d'un hangar sûr, durable et conforme — sans surcoût de matière inutile."
       ] },
       { h2: "Fabrication, traitement et montage", paragraphs: [
@@ -74,7 +74,7 @@ module.exports = [
         "<strong>Bardage isolé</strong> et lanterneaux pour le confort thermique et la lumière."
       ] },
       { h2: "Normes, sécurité et durabilité", paragraphs: [
-        "Les structures sont calculées selon l'Eurocode 3 et assemblées par soudure et boulonnerie haute résistance par des soudeurs qualifiés. Le traitement anticorrosion (peinture industrielle ou galvanisation à chaud) est choisi selon l'agressivité de votre environnement de production."
+        "Les structures sont calculées selon les règles en vigueur et assemblées par soudure et boulonnerie haute résistance par des soudeurs qualifiés. Le traitement anticorrosion (peinture industrielle ou galvanisation à chaud) est choisi selon l'agressivité de votre environnement de production."
       ] },
       { h2: "Une expérience confirmée dans l'industrie tunisienne", paragraphs: [
         "STIM est intervenue pour des acteurs reconnus de l'industrie et de l'agro-alimentaire (Groupe Hamrouni, GCA, Moulin d'Or, Groupe Mzabi, entre autres). Cette expérience nous permet d'anticiper les exigences propres aux sites de production."
@@ -82,7 +82,7 @@ module.exports = [
     ],
     bullets: [
       "Intégration ponts roulants &amp; mezzanines",
-      "Calcul Eurocode 3, soudeurs qualifiés",
+      "Calculs conformes, soudeurs qualifiés",
       "Bardage isolé &amp; éclairage naturel",
       "Sites de production agro-alimentaires &amp; industriels",
       "Bâtiments évolutifs et extensibles"
@@ -225,7 +225,7 @@ module.exports = [
         "<strong>Surélévations</strong> — création d'un étage en structure légère sur l'existant."
       ] },
       { h2: "Calcul des charges et sécurité", paragraphs: [
-        "Le plancher est calculé selon l'Eurocode 3 pour la charge d'exploitation visée. Escaliers, garde-corps et plinthes complètent l'ouvrage pour une utilisation sûre au quotidien."
+        "Le plancher est calculé selon les règles en vigueur pour la charge d'exploitation visée. Escaliers, garde-corps et plinthes complètent l'ouvrage pour une utilisation sûre au quotidien."
       ] }
     ],
     bullets: [
