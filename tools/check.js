@@ -57,7 +57,7 @@ async function crawl(url, ref) {
   try {
     const sm = await (await fetch(BASE + "/sitemap.xml")).text();
     (sm.match(/<loc>([^<]+)<\/loc>/g) || []).forEach((l) => {
-      const u = l.replace(/<\/?loc>/g, "").replace(BASE, "").replace("https://stim.tn", "");
+      const u = l.replace(/<\/?loc>/g, "").replace(BASE, "").replace("https://www.stimtn.com", "");
       if (u.startsWith("/")) pages.add(u);
     });
   } catch (_) {}

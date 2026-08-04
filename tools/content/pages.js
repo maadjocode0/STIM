@@ -169,7 +169,7 @@ exports.servicePage = (ctx, s, SERVICES) => {
 ${ctx.ctaBand}`;
 
   const serviceLD = `<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":${JSON.stringify(s.name + " en Tunisie")},"serviceType":${JSON.stringify(s.name)},"provider":{"@id":"https://stim.tn/#organization"},"areaServed":{"@type":"Country","name":"Tunisie"},"description":${JSON.stringify(s.metaDesc)},"url":${JSON.stringify(`https://stim.tn/services/${s.slug}/`)}}
+{"@context":"https://schema.org","@type":"Service","name":${JSON.stringify(s.name + " en Tunisie")},"serviceType":${JSON.stringify(s.name)},"provider":{"@id":"https://www.stimtn.com/#organization"},"areaServed":{"@type":"Country","name":"Tunisie"},"description":${JSON.stringify(s.metaDesc)},"url":${JSON.stringify(`https://www.stimtn.com/services/${s.slug}/`)}}
 </script>`;
 
   return {
@@ -367,7 +367,7 @@ exports.cityPage = (ctx, c, CITIES, SERVICES) => {
 </section>
 ${ctx.ctaBand}`;
   const serviceLD = `<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":${JSON.stringify("Charpente métallique à " + c.name)},"serviceType":"Construction de charpente métallique","provider":{"@id":"https://stim.tn/#organization"},"areaServed":{"@type":"City","name":${JSON.stringify(c.name)}},"description":${JSON.stringify(c.metaDesc)},"url":${JSON.stringify(`https://stim.tn/${c.slug}/`)}}
+{"@context":"https://schema.org","@type":"Service","name":${JSON.stringify("Charpente métallique à " + c.name)},"serviceType":"Construction de charpente métallique","provider":{"@id":"https://www.stimtn.com/#organization"},"areaServed":{"@type":"City","name":${JSON.stringify(c.name)}},"description":${JSON.stringify(c.metaDesc)},"url":${JSON.stringify(`https://www.stimtn.com/${c.slug}/`)}}
 </script>`;
   return {
     title: c.metaTitle, desc: c.metaDesc, urlPath: `/${c.slug}/`, active: "zones", body,
@@ -448,7 +448,7 @@ ${ctx.ctaBand}`;
     desc: "STIM, Société Tunisienne d'Industrie Métallique : 60 ouvriers, un atelier à Ben Arous et un bureau d'études intégré. Charpente métallique de qualité depuis 2008.",
     urlPath: "/a-propos/", active: "apropos", body,
     extraLD: ctx.breadcrumbLD([{ name: "Accueil", url: "/" }, { name: "À propos", url: "/a-propos/" }]) +
-      `\n<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"À propos de STIM","url":"https://stim.tn/a-propos/","about":{"@id":"https://stim.tn/#organization"}}</script>`,
+      `\n<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"À propos de STIM","url":"https://www.stimtn.com/a-propos/","about":{"@id":"https://www.stimtn.com/#organization"}}</script>`,
   };
 };
 

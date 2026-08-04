@@ -8,7 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
-const SITE = "https://stim.tn";
+const SITE = "https://www.stimtn.com";
 
 /* Dimensions et largeurs disponibles par slug — généré par tools/optimize.js */
 const MANIFEST = require("./content/img-manifest.json");
@@ -103,7 +103,7 @@ function footer() {
 
 function orgLD() {
   return `<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"GeneralContractor","@id":"https://stim.tn/#organization","name":"STIM — Société Tunisienne d'Industrie Métallique","url":"https://stim.tn/","logo":"https://stim.tn/assets/logo/stim-logo.png","telephone":"+21655326160","email":"contact@stim.tn","foundingDate":"2008","sameAs":["https://www.facebook.com/profile.php?id=61566329604504"],"address":{"@type":"PostalAddress","streetAddress":"Rue de Mercure, Zone Industrielle","addressLocality":"Ben Arous","postalCode":"2013","addressCountry":"TN"},"geo":{"@type":"GeoCoordinates","latitude":36.7534669,"longitude":10.2399379},"areaServed":{"@type":"Country","name":"Tunisie"}}
+{"@context":"https://schema.org","@type":"GeneralContractor","@id":"https://www.stimtn.com/#organization","name":"STIM — Société Tunisienne d'Industrie Métallique","url":"https://www.stimtn.com/","logo":"https://www.stimtn.com/assets/logo/stim-logo.png","telephone":"+21655326160","email":"contact@stim.tn","foundingDate":"2008","sameAs":["https://www.facebook.com/profile.php?id=61566329604504"],"address":{"@type":"PostalAddress","streetAddress":"Rue de Mercure, Zone Industrielle","addressLocality":"Ben Arous","postalCode":"2013","addressCountry":"TN"},"geo":{"@type":"GeoCoordinates","latitude":36.7534669,"longitude":10.2399379},"areaServed":{"@type":"Country","name":"Tunisie"}}
 </script>`;
 }
 
@@ -158,13 +158,13 @@ function doc({ title, desc, urlPath, active, body, extraLD = "" }) {
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="https://stim.tn/assets/icons/og-image.jpg">
+<meta property="og:image" content="https://www.stimtn.com/assets/icons/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
-<meta name="twitter:image" content="https://stim.tn/assets/icons/og-image.jpg">
+<meta name="twitter:image" content="https://www.stimtn.com/assets/icons/og-image.jpg">
 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">

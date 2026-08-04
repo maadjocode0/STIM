@@ -4,7 +4,7 @@ const BASE = (process.argv[2] || "http://localhost:8080").replace(/\/$/, "");
 (async () => {
   const sm = await (await fetch(BASE + "/sitemap.xml")).text();
   const urls = (sm.match(/<loc>([^<]+)<\/loc>/g) || []).map((l) =>
-    l.replace(/<\/?loc>/g, "").replace("https://stim.tn", ""));
+    l.replace(/<\/?loc>/g, "").replace("https://www.stimtn.com", ""));
 
   const titles = {}, descs = {}, warn = [];
   console.log("URL".padEnd(42), "Tlen", "Dlen", "H1", "LD", "Canon");
@@ -20,7 +20,7 @@ const BASE = (process.argv[2] || "http://localhost:8080").replace(/\/$/, "");
       try { JSON.parse(json); ldOK++; } catch (e) { ldBad++; warn.push(`JSON-LD invalide sur ${u}: ${e.message}`); }
     });
     const canon = (html.match(/<link rel="canonical" href="([^"]*)"/) || [])[1] || "";
-    const canonOK = canon === "https://stim.tn" + u ? "ok" : "MISMATCH(" + canon + ")";
+    const canonOK = canon === "https://www.stimtn.com" + u ? "ok" : "MISMATCH(" + canon + ")";
     const lang = (html.match(/<html lang="([^"]*)"/) || [])[1] || "";
 
     titles[title] = (titles[title] || 0) + 1;

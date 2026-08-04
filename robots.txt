@@ -3,4 +3,4 @@ Allow: /
 Disallow: /tools/
 Disallow: /images/
 
-Sitemap: https://stim.tn/sitemap.xml
+Sitemap: https://www.stimtn.com/sitemap.xml
